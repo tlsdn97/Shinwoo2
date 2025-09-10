@@ -42,6 +42,9 @@
     <Filter Include="Source\B2025_08_28\Private">
       <UniqueIdentifier>{15A59B6C-8B7D-3668-8CE9-08F155E396F6}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\PWeapon.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimInstance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
@@ -57,6 +60,9 @@
     <Filter Include="Source\B2025_08_28\Public">
       <UniqueIdentifier>{BC92EB02-13D9-3EC3-9B1F-C0CBAE3C3361}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\PWeapon.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimInstance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
