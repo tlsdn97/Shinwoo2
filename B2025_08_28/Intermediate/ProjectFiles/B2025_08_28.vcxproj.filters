@@ -11,6 +11,7 @@
     <None Include="..\..\Source\B2025_08_28Editor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -37,6 +38,36 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\B2025_08_28.h">
       <Filter>Source\B2025_08_28</Filter>
+    </ClCompile>
+    <Filter Include="Source\B2025_08_28\Private">
+      <UniqueIdentifier>{15A59B6C-8B7D-3668-8CE9-08F155E396F6}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimInstance.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WGameModeBase.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WPlayer.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WPlayerController.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\B2025_08_28\Public">
+      <UniqueIdentifier>{BC92EB02-13D9-3EC3-9B1F-C0CBAE3C3361}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimInstance.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WGameModeBase.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WPlayer.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WPlayerController.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
