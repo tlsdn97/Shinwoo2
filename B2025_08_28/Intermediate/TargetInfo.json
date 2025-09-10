@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "B2025_08_28",
+			"Path": "..\\Source\\B2025_08_28.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "B2025_08_28Editor",
+			"Path": "..\\Source\\B2025_08_28Editor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
