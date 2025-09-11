@@ -20,7 +20,13 @@ private: \
 	friend struct Z_Construct_UClass_AWPlayer_Statics; \
 public: \
 	DECLARE_CLASS(AWPlayer, ACharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/B2025_08_28"), NO_API) \
-	DECLARE_SERIALIZER(AWPlayer)
+	DECLARE_SERIALIZER(AWPlayer) \
+	enum class ENetFields_Private : uint16 \
+	{ \
+		NETFIELD_REP_START=(uint16)((int32)Super::ENetFields_Private::NETFIELD_REP_END + (int32)1), \
+		Weapons=NETFIELD_REP_START, \
+		NETFIELD_REP_END=Weapons	}; \
+	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_12_ENHANCED_CONSTRUCTORS \

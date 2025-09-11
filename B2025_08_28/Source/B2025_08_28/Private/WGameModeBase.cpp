@@ -3,6 +3,7 @@
 
 #include "WGameModeBase.h"
 #include "WPlayer.h"
+#include "WHUD.h"
 #include "WPlayerController.h"
 
 AWGameModeBase::AWGameModeBase()
@@ -10,4 +11,6 @@ AWGameModeBase::AWGameModeBase()
 	DefaultPawnClass = AWPlayer::StaticClass();
 
 	PlayerControllerClass = AWPlayerController::StaticClass();
+
+	HUDClass = AWHUD::StaticClass();
 }

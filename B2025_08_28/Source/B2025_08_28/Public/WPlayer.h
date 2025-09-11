@@ -16,7 +16,13 @@ public:
 
 protected:
     virtual void BeginPlay() override;
+    virtual void Tick(float DeltaSeconds) override;
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Configurations")
+    TArray<TSubclassOf<class APWeapon>> DefaultWeapons;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float ForwardSpeed = 300.f;
@@ -29,12 +35,52 @@ protected:
     void FLookUp(float Value);
     void FTurn(float Value);
 
+    void StartFire();
+    void StopFire();
+    void HandleFire();
+    void PlayFireMontage();
 
-private:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-    class USpringArmComponent* CameraBoom;
+    void BeginZoom();
+    void EndZoom();
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-    class UCameraComponent* FollowCamera;
+    bool bIsFiring;
+    bool bWantsToZoom;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+    float FireRate;
+    UPROPERTY(EditDefaultsOnly, Category = "Camera")
+    float DefaultFOV = 90.f;
+    UPROPERTY(EditDefaultsOnly, Category = "Camera")
+    float ZoomedFOV = 60.f;
+    UPROPERTY(EditDefaultsOnly, Category = "Camera")
+    float ZoomInterpSpeed = 15.f;
+
+    FTimerHandle FireTimerHandle;
+
+public:
+    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+    class UParticleSystem* MuzzleFlashFX;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+   class UParticleSystem* ImpactFX;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+   class USoundBase* FireSound;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Animation")
+    class UAnimMontage* FireMontage;
+
+    UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Replicated, Category = "State")
+    TArray<class APWeapon*> Weapons;
+
+    UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
+    int32 CurrentIndex = 0;
+
+protected:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
+    class USpringArmComponent* SpringArmComp;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
+    class UCameraComponent* CameraComp;
 };
 

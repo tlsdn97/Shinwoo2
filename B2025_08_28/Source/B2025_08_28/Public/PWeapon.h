@@ -10,17 +10,21 @@ UCLASS()
 class B2025_08_28_API APWeapon : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
 	APWeapon();
-
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	class USceneComponent* Root;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	class USkeletalMeshComponent* Mesh;
 
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
+	class AWPlayer* CurrentOwner;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
+	FTransform PlacementTransform;
 };
