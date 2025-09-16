@@ -75,6 +75,12 @@ public:
 
     UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
     int32 CurrentIndex = 0;
+public:
+    UPROPERTY(BlueprintReadWrite)
+    bool bHasWeapon = false;
+
+private:
+    APWeapon* CurrentWeapon = nullptr;
 
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")

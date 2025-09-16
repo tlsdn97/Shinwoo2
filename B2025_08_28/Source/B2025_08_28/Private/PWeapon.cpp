@@ -2,6 +2,7 @@
 
 
 #include "PWeapon.h"
+#include "WPlayer.h"
 
 APWeapon::APWeapon()
 {
@@ -22,4 +23,17 @@ void APWeapon::BeginPlay()
 
 	if (!CurrentOwner)
 	Mesh->SetVisibility(false);
+}
+
+void APWeapon::OnPlayerBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (GEngine) GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Child override"));
+	auto player = Cast<AWPlayer>(OtherActor);
+
+	if (player && !(player->bHasWeapon))
+	{
+		FName WeaponSocket(TEXT("RightHandWeaponSocket"));
+		this->AttachToComponent(player->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponSocket);
+		player->bHasWeapon = true;
+	}
 }

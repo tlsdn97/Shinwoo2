@@ -41,16 +41,14 @@ void AWPlayer::BeginPlay()
     Super::BeginPlay();
     DefaultFOV = CameraComp->FieldOfView;
 
-    if (HasAuthority())
+    FName WeaponSocket(TEXT("hand_rSocket"));
+    CurrentWeapon = GetWorld()->SpawnActor<APWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
+    if (nullptr != CurrentWeapon)
     {
-        for (const TSubclassOf<APWeapon>& WeaponClass : DefaultWeapons)
-        {
-            if (!WeaponClass) continue;
-            FActorSpawnParameters Params;
-            Params.Owner = this;
-            APWeapon* SpawnedWeapon = GetWorld()->SpawnActor<APWeapon>(WeaponClass, Params);
-            const int32 Index = Weapons.Add(SpawnedWeapon);
-        }
+        CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponSocket);
+        CurrentWeapon->SetActorRelativeLocation(FVector(0.0f, 0.0f, -10.0f));
+
+        CurrentWeapon->SetActorScale3D(FVector(2.0f));
     }
 }
 

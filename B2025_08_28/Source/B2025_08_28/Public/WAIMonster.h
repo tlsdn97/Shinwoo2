@@ -12,18 +12,23 @@ class B2025_08_28_API AWAIMonster : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AWAIMonster();
 
+    UFUNCTION()
+    void TakeDamageFromBullet(float Damage);
+
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    UPROPERTY(EditAnywhere, Category = "HP")
+    float MaxHP = 100.f;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+    UPROPERTY(VisibleAnywhere, Category = "HP")
+    float CurrentHP;
 
+    UPROPERTY(EditDefaultsOnly, Category = "UI")
+    TSubclassOf<class UWAIHpWidget> HPWidgetClass;
+
+    UPROPERTY()
+    UWAIHpWidget* HPWidget;
 };
