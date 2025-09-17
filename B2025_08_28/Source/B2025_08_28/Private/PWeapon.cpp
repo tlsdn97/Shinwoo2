@@ -32,7 +32,7 @@ void APWeapon::OnPlayerBeginOverlap(UPrimitiveComponent* OverlappedComponent, AA
 
 	if (player && !(player->bHasWeapon))
 	{
-		FName WeaponSocket(TEXT("RightHandWeaponSocket"));
+		FName WeaponSocket(TEXT("Weapon"));
 		this->AttachToComponent(player->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponSocket);
 		player->bHasWeapon = true;
 	}
