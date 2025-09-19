@@ -15,17 +15,16 @@ public:
 	AWBullet();
 
 protected:
-    UPROPERTY(EditAnywhere, Category = "Damage")
-    float Damage = 20.f;
-
-    UPROPERTY(VisibleAnywhere)
-    class UProjectileMovementComponent* ProjectileMovement;
-
-    UPROPERTY(VisibleAnywhere)
-    class USphereComponent* Collision;
-
     virtual void BeginPlay() override;
 
-    UFUNCTION()
-    void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, FVector NormalImpulse,const FHitResult& Hit);
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bullet")
+    UStaticMeshComponent* BulletMesh;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Bullet")
+    class UProjectileMovementComponent* ProjectileMovement;
+
+public:
+    virtual void Tick(float DeltaTime) override;
+
+    void FireInDirection(const FVector& ShootDirection);
 };

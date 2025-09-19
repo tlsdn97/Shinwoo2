@@ -4,12 +4,16 @@
 #include "WPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/Controller.h"
-#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h" 
+#include "Components/CapsuleComponent.h"
+#include "Components/InputComponent.h"
+
+#include "PWeapon.h"
+#include "WAnimInstance.h"
 #include "Animation/AnimInstance.h"
 #include "TimerManager.h"
-#include "PWeapon.h"
+#include "Engine/World.h"
+#include "GameFramework/Controller.h"
 #include <Net/UnrealNetwork.h>
 
 AWPlayer::AWPlayer()
@@ -41,14 +45,13 @@ void AWPlayer::BeginPlay()
     Super::BeginPlay();
     DefaultFOV = CameraComp->FieldOfView;
 
-    FName WeaponSocket(TEXT("hand_rSocket"));
-    CurrentWeapon = GetWorld()->SpawnActor<APWeapon>(FVector::ZeroVector, FRotator::ZeroRotator);
-    if (nullptr != CurrentWeapon)
+    if (WeaponClass)
     {
-        CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponSocket);
-        CurrentWeapon->SetActorRelativeLocation(FVector(0.0f, 0.0f, -10.0f));
-
-        CurrentWeapon->SetActorScale3D(FVector(2.0f));
+        EquippedWeapon = GetWorld()->SpawnActor<APWeapon>(WeaponClass);
+        if (EquippedWeapon)
+        {
+            EquippedWeapon->AttachToCharacter(this);
+        }
     }
 }
 
@@ -79,8 +82,6 @@ void AWPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void AWPlayer::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-    DOREPLIFETIME_CONDITION(AWPlayer, Weapons, COND_None);
 }
 
 void AWPlayer::FMoveForward(float Value)
@@ -127,30 +128,45 @@ void AWPlayer::FTurn(float Value)
 
 void AWPlayer::StartFire()
 {
-    if (bIsFiring) return;
-    bIsFiring = true;
+    if (EquippedWeapon)
+    {
+        EquippedWeapon->FStopFire();
+    }
 
-    HandleFire();
-    GetWorldTimerManager().SetTimer(FireTimerHandle, this, &AWPlayer::HandleFire, FireRate, true);
+    if (UWAnimInstance* AnimInst = Cast<UWAnimInstance>(GetMesh()->GetAnimInstance()))
+    {
+        AnimInst->SetIsFiring(true);
+    }
+
+    PlayFireMontage();
 }
 void AWPlayer::StopFire()
 {
-    bIsFiring = false;
-    GetWorldTimerManager().ClearTimer(FireTimerHandle);
+    if (EquippedWeapon)
+    {
+        EquippedWeapon->FStopFire();
+    }
+
+    if (UWAnimInstance* AnimInst = Cast<UWAnimInstance>(GetMesh()->GetAnimInstance()))
+    {
+        AnimInst->SetIsFiring(false);
+    }
 }
 
 void AWPlayer::HandleFire()
 {
-    PlayFireMontage();
+    // PlayFireMontage();
 }
 
 void AWPlayer::PlayFireMontage()
 {
-    if (FireMontage && GetMesh())
+    if (FireMontage == nullptr) return;
+
+    if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
     {
-        if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
+        if (!AnimInstance->Montage_IsPlaying(FireMontage))
         {
-            AnimInstance->Montage_Play(FireMontage);
+            AnimInstance->Montage_Play(FireMontage, 1.0f);
         }
     }
 }
@@ -165,3 +181,7 @@ void AWPlayer::EndZoom()
     bWantsToZoom = false;
 }
 
+APWeapon* AWPlayer::GetEquippedWeapon() const
+{
+    return EquippedWeapon;
+}

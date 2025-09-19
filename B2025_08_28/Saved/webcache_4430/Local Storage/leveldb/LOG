@@ -1,3 +1,2 @@
-2025/09/17-17:11:52.246 8dec Reusing MANIFEST C:/PP_Shinwoo2/Shinwoo2/B2025_08_28/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001
-2025/09/17-17:11:52.247 8dec Recovering log #3
-2025/09/17-17:11:52.248 8dec Reusing old log C:/PP_Shinwoo2/Shinwoo2/B2025_08_28/Saved/webcache_4430\Local Storage\leveldb/000003.log 
+2025/09/18-18:04:12.887 40f0 Creating DB C:/PP_Shinwoo2/Shinwoo2/B2025_08_28/Saved/webcache_4430\Local Storage\leveldb since it was missing.
+2025/09/18-18:04:12.902 40f0 Reusing MANIFEST C:/PP_Shinwoo2/Shinwoo2/B2025_08_28/Saved/webcache_4430\Local Storage\leveldb/MANIFEST-000001

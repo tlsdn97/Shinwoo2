@@ -15,7 +15,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define B2025_08_28_WAnimInstance_generated_h
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execAnimNotify_Fire);
+	DECLARE_FUNCTION(execAnimNotify_OnFire);
 
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_15_INCLASS_NO_PURE_DECLS \

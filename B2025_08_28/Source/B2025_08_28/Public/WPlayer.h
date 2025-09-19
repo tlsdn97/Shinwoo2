@@ -14,6 +14,7 @@ class B2025_08_28_API AWPlayer : public ACharacter
 public:
 	AWPlayer();
 
+    void PlayFireMontage();
 protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaSeconds) override;
@@ -35,10 +36,15 @@ protected:
     void FLookUp(float Value);
     void FTurn(float Value);
 
+    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+    TSubclassOf<class APWeapon> WeaponClass;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Animation")
+    class UAnimMontage* FireMontage;
+
     void StartFire();
     void StopFire();
     void HandleFire();
-    void PlayFireMontage();
 
     void BeginZoom();
     void EndZoom();
@@ -50,37 +56,23 @@ protected:
     float FireRate;
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float DefaultFOV = 90.f;
+
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float ZoomedFOV = 60.f;
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float ZoomInterpSpeed = 15.f;
 
-    FTimerHandle FireTimerHandle;
-
-public:
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-    class UParticleSystem* MuzzleFlashFX;
-
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-   class UParticleSystem* ImpactFX;
-
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-   class USoundBase* FireSound;
-
-    UPROPERTY(EditDefaultsOnly, Category = "Animation")
-    class UAnimMontage* FireMontage;
-
-    UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Replicated, Category = "State")
-    TArray<class APWeapon*> Weapons;
-
-    UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
-    int32 CurrentIndex = 0;
 public:
     UPROPERTY(BlueprintReadWrite)
     bool bHasWeapon = false;
 
+    UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
+    int32 CurrentIndex = 0;
+
+   class APWeapon* GetEquippedWeapon() const;
+
 private:
-    APWeapon* CurrentWeapon = nullptr;
+    APWeapon* EquippedWeapon;
 
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")

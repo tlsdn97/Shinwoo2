@@ -15,15 +15,27 @@ class B2025_08_28_API UWAnimInstance : public UAnimInstance
 	GENERATED_BODY()
 
 public:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
+    virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+
+    void SetIsFiring(bool bNewFiring) { bIsFiring = bNewFiring; }
+
+    UFUNCTION()
+    void AnimNotify_OnFire();
+
+protected:
+    UPROPERTY(BlueprintReadOnly, Category = "Movement")
+    float Speed;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Movement")
+    bool bIsInAir;
+
+   UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
     float ForwardSpeed;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
     float RightSpeed;
 
-    UFUNCTION()
-    void AnimNotify_Fire();
-protected:
-    virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+    UPROPERTY(BlueprintReadOnly, Category = "Combat")
+    bool bIsFiring = false;
 
 };

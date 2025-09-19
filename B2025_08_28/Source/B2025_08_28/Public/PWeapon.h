@@ -13,20 +13,33 @@ class B2025_08_28_API APWeapon : public AActor
 
 public:
 	APWeapon();
+
+	void FStartFire();
+	void FStopFire();
+
+	UFUNCTION()
+	void Fire();
+
+	void AttachToCharacter(class AWPlayer* OwnerChar);
+
 protected:
 	virtual void BeginPlay() override;
-	void OnPlayerBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-	
-public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
-	class USceneComponent* Root;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
-	class USkeletalMeshComponent* Mesh;
+	UPROPERTY(VisibleAnywhere)
+	USkeletalMeshComponent* WeaponMesh;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
-	class AWPlayer* CurrentOwner;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Weapon")
+	TSubclassOf<class AWBullet> BulletClass;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configurations")
-	FTransform PlacementTransform;
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	USoundBase* FireSound;
+private:
+	FTimerHandle FireTimer;
+	bool bIsFiring = false;
+
+	UPROPERTY(EditAnywhere, Category = "Weapon")
+	float FireRate = 0.1f; 
+
+	AWPlayer* OwnerCharacter;
+
 };

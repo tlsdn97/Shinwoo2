@@ -2,36 +2,49 @@
 
 
 #include "WBullet.h"
-#include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "WAIMonster.h"
+#include "Components/StaticMeshComponent.h"
+#include "UObject/ConstructorHelpers.h"
 
 AWBullet::AWBullet()
 {
-    Collision = CreateDefaultSubobject<USphereComponent>(TEXT("Collision"));
-    RootComponent = Collision;
-    Collision->OnComponentHit.AddDynamic(this, &AWBullet::OnHit);
+    PrimaryActorTick.bCanEverTick = true;
+
+    BulletMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BulletMesh"));
+    RootComponent = BulletMesh;
+    BulletMesh->SetCollisionProfileName(TEXT("Projectile"));
+
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> BulletAsset(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
+    if (BulletAsset.Succeeded())
+    {
+        BulletMesh->SetStaticMesh(BulletAsset.Object);
+        BulletMesh->SetWorldScale3D(FVector(0.1f));
+    }
 
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovement"));
     ProjectileMovement->InitialSpeed = 3000.f;
     ProjectileMovement->MaxSpeed = 3000.f;
     ProjectileMovement->bRotationFollowsVelocity = true;
-
+    ProjectileMovement->ProjectileGravityScale = 0.f;
 }
 
 void AWBullet::BeginPlay()
 {
 	Super::BeginPlay();
+    SetLifeSpan(3.f);
 }
 
-void AWBullet::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+void AWBullet::Tick(float DeltaTime)
 {
-    if (AWAIMonster* Monster = Cast<AWAIMonster>(OtherActor))
-    {
-        Monster->TakeDamageFromBullet(Damage);
-    }
+    Super::Tick(DeltaTime);
+}
 
-    Destroy();
+void AWBullet::FireInDirection(const FVector& ShootDirection)
+{
+    if (ProjectileMovement)
+    {
+        ProjectileMovement->Velocity = ShootDirection * ProjectileMovement->InitialSpeed;
+    }
 }
 
 
