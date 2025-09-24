@@ -29,7 +29,7 @@ protected:
     float ForwardSpeed = 300.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-    float BackwardSpeed = 150.f;
+    float BackwardSpeed = 200.f;
 
     void FMoveForward(float Value);
     void FMoveRight(float Value);

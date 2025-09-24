@@ -38,6 +38,7 @@ AWPlayer::AWPlayer()
     CameraComp->bUsePawnControlRotation = false;
 
     GetCharacterMovement()->MaxWalkSpeed = ForwardSpeed;
+
 }
 
 void AWPlayer::BeginPlay()
