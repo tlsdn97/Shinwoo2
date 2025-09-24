@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAIAnimInstance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WAIController.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAIHpWidget.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
@@ -55,6 +58,18 @@
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimInstance.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateCanAttack.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateTarget.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTTask_MoveToTarget.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBT_AttackTask.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBullet.cpp">
@@ -84,6 +99,9 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAIAnimInstance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WAIController.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAIHpWidget.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
@@ -91,6 +109,18 @@
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimInstance.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateCanAttack.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateTarget.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTTask_MoveToTarget.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBT_AttackTask.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBullet.h">

@@ -9,12 +9,17 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef B2025_08_28_WAIMonster_generated_h
 #error "WAIMonster.generated.h already included, missing '#pragma once' in WAIMonster.h"
 #endif
 #define B2025_08_28_WAIMonster_generated_h
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnDetectionEnd); \
+	DECLARE_FUNCTION(execOnDetectionBegin); \
 	DECLARE_FUNCTION(execTakeDamageFromBullet);
 
 
