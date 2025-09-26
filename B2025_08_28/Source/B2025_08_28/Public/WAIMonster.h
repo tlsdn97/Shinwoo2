@@ -13,10 +13,14 @@ class B2025_08_28_API AWAIMonster : public ACharacter
 
 public:
 	AWAIMonster();
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+    float Health = 100.f;
 
     UFUNCTION()
     void TakeDamageFromBullet(float Damage);
 
+    UFUNCTION()
+    void HandleWeaponDamage(AActor* DamagedActor, float Damage);
 protected:
     virtual void BeginPlay() override;
 
@@ -50,4 +54,5 @@ protected:
 
     UPROPERTY()
     UWAIHpWidget* HPWidget;
+
 };

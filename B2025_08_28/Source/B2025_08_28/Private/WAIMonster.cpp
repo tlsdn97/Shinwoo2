@@ -7,8 +7,10 @@
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
 #include "WAIController.h"
+#include "PWeapon.h"
 #include "AIController.h"
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/Actor.h"
 
 AWAIMonster::AWAIMonster()
 {
@@ -36,6 +38,18 @@ void AWAIMonster::TakeDamageFromBullet(float Damage)
         Destroy(); 
     }
 
+}
+
+void AWAIMonster::HandleWeaponDamage(AActor* DamagedActor, float Damage)
+{
+    if (DamagedActor != this) return;
+
+    Health -= Damage;
+    UE_LOG(LogTemp, Warning, TEXT("Took %.1f dmg, HP: %.1f"), Damage, Health);
+    if (Health <= 0.f)
+    {
+        Destroy();
+    }
 }
 
 void AWAIMonster::BeginPlay()
@@ -88,4 +102,5 @@ void AWAIMonster::OnDetectionEnd(UPrimitiveComponent* OverlappedComp, AActor* Ot
         }
     }
 }
+
 

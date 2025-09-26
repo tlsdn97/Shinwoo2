@@ -9,16 +9,25 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef B2025_08_28_PWeapon_generated_h
 #error "PWeapon.generated.h already included, missing '#pragma once' in PWeapon.h"
 #endif
 #define B2025_08_28_PWeapon_generated_h
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_9_DELEGATE \
+B2025_08_28_API void FOnDealDamage_DelegateWrapper(const FMulticastScriptDelegate& OnDealDamage, AActor* DamagedActor, float DamageAmount);
+
+
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnOverlapBegin); \
+	DECLARE_FUNCTION(execPerformAttack); \
 	DECLARE_FUNCTION(execFire);
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAPWeapon(); \
 	friend struct Z_Construct_UClass_APWeapon_Statics; \
@@ -27,7 +36,7 @@ public: \
 	DECLARE_SERIALIZER(APWeapon)
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	APWeapon(APWeapon&&); \
@@ -39,13 +48,13 @@ public: \
 	NO_API virtual ~APWeapon();
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_9_PROLOG
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_GENERATED_BODY \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_11_PROLOG
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_INCLASS_NO_PURE_DECLS \
-	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_12_ENHANCED_CONSTRUCTORS \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_INCLASS_NO_PURE_DECLS \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_PWeapon_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

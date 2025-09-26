@@ -7,23 +7,27 @@
 #include "UObject/GeneratedCppIncludes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeB2025_08_28_init() {}
+	B2025_08_28_API UFunction* Z_Construct_UDelegateFunction_B2025_08_28_OnDealDamage__DelegateSignature();
 	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_B2025_08_28;
 	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_B2025_08_28()
 	{
 		if (!Z_Registration_Info_UPackage__Script_B2025_08_28.OuterSingleton)
 		{
+			static UObject* (*const SingletonFuncArray[])() = {
+				(UObject* (*)())Z_Construct_UDelegateFunction_B2025_08_28_OnDealDamage__DelegateSignature,
+			};
 			static const UECodeGen_Private::FPackageParams PackageParams = {
 				"/Script/B2025_08_28",
-				nullptr,
-				0,
+				SingletonFuncArray,
+				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x9CED3E72,
-				0xB71EA8CE,
+				0xBC360AD3,
+				0xBCFB03C3,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_B2025_08_28.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_B2025_08_28.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_B2025_08_28(Z_Construct_UPackage__Script_B2025_08_28, TEXT("/Script/B2025_08_28"), Z_Registration_Info_UPackage__Script_B2025_08_28, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x9CED3E72, 0xB71EA8CE));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_B2025_08_28(Z_Construct_UPackage__Script_B2025_08_28, TEXT("/Script/B2025_08_28"), Z_Registration_Info_UPackage__Script_B2025_08_28, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xBC360AD3, 0xBCFB03C3));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

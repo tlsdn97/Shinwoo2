@@ -60,7 +60,7 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimInstance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateCanAttack.cpp">
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateDistance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateTarget.cpp">
@@ -90,6 +90,9 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WPlayerController.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WPlayerHpWidget.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
     <Filter Include="Source\B2025_08_28\Public">
       <UniqueIdentifier>{BC92EB02-13D9-3EC3-9B1F-C0CBAE3C3361}</UniqueIdentifier>
     </Filter>
@@ -111,7 +114,7 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimInstance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateCanAttack.h">
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateDistance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateTarget.h">
@@ -139,6 +142,9 @@
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WPlayerController.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WPlayerHpWidget.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
   </ItemGroup>

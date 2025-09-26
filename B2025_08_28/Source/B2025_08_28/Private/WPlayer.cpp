@@ -80,10 +80,6 @@ void AWPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAction("Aim", IE_Released, this, &AWPlayer::EndZoom);
 }
 
-void AWPlayer::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
-{
-    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-}
 
 void AWPlayer::FMoveForward(float Value)
 {

@@ -7,17 +7,38 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "TimerManager.h"
+#include "Components/SphereComponent.h"
+#include "GameFramework/Character.h"
 
 APWeapon::APWeapon()
 {
     PrimaryActorTick.bCanEverTick = false;
     WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
     SetRootComponent(WeaponMesh);
+
+    HitSphere = CreateDefaultSubobject<USphereComponent>(TEXT("HitSphere"));
+    RootComponent = HitSphere;
+
+    HitSphere->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+    HitSphere->SetCollisionObjectType(ECC_WorldDynamic);
+    HitSphere->SetCollisionResponseToAllChannels(ECR_Ignore);
+    HitSphere->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 }
 
 void APWeapon::BeginPlay()
 {
     Super::BeginPlay();
+}
+
+void APWeapon::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+    if (!OtherActor || OtherActor == this) return;
+
+    OnDealDamage.Broadcast(OtherActor, DamageAmount);
+}
+
+void APWeapon::PerformAttack()
+{
 }
 
 void APWeapon::FStartFire()

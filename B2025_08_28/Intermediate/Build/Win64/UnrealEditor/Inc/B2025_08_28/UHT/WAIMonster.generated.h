@@ -20,6 +20,7 @@ struct FHitResult;
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnDetectionEnd); \
 	DECLARE_FUNCTION(execOnDetectionBegin); \
+	DECLARE_FUNCTION(execHandleWeaponDamage); \
 	DECLARE_FUNCTION(execTakeDamageFromBullet);
 
 

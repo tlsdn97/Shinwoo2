@@ -20,8 +20,6 @@ protected:
     virtual void Tick(float DeltaSeconds) override;
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-
     UPROPERTY(EditDefaultsOnly, Category = "Configurations")
     TArray<TSubclassOf<class APWeapon>> DefaultWeapons;
 
