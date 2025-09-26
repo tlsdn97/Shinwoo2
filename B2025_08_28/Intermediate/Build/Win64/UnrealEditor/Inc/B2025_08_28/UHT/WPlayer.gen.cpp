@@ -18,6 +18,7 @@ ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
+UMG_API UClass* Z_Construct_UClass_UWidgetComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_B2025_08_28();
 // End Cross Module References
 
@@ -92,6 +93,23 @@ struct Z_Construct_UClass_AWPlayer_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxHealth_MetaData[] = {
+		{ "Category", "Player|Stats" },
+		{ "ModuleRelativePath", "Public/WPlayer.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentHealth_MetaData[] = {
+		{ "Category", "Player|Stats" },
+		{ "ModuleRelativePath", "Public/WPlayer.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HPWidgetComp_MetaData[] = {
+		{ "Category", "Player|UI" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/WPlayer.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bUseWorldSpaceUI_MetaData[] = {
+		{ "Category", "Player|UI" },
+		{ "ModuleRelativePath", "Public/WPlayer.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FClassPropertyParams NewProp_DefaultWeapons_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_DefaultWeapons;
@@ -108,6 +126,11 @@ struct Z_Construct_UClass_AWPlayer_Statics
 	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentIndex;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SpringArmComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_HPWidgetComp;
+	static void NewProp_bUseWorldSpaceUI_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bUseWorldSpaceUI;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -133,6 +156,14 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWPlayer_Statics
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentIndex = { "CurrentIndex", nullptr, (EPropertyFlags)0x0010000000020805, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, CurrentIndex), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentIndex_MetaData), NewProp_CurrentIndex_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_SpringArmComp = { "SpringArmComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, SpringArmComp), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpringArmComp_MetaData), NewProp_SpringArmComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraComp_MetaData), NewProp_CameraComp_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, MaxHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHealth_MetaData), NewProp_MaxHealth_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentHealth = { "CurrentHealth", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, CurrentHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentHealth_MetaData), NewProp_CurrentHealth_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_HPWidgetComp = { "HPWidgetComp", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, HPWidgetComp), Z_Construct_UClass_UWidgetComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HPWidgetComp_MetaData), NewProp_HPWidgetComp_MetaData) };
+void Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI_SetBit(void* Obj)
+{
+	((AWPlayer*)Obj)->bUseWorldSpaceUI = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI = { "bUseWorldSpaceUI", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AWPlayer), &Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bUseWorldSpaceUI_MetaData), NewProp_bUseWorldSpaceUI_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWPlayer_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_DefaultWeapons_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_DefaultWeapons,
@@ -148,6 +179,10 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWPlayer_
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentIndex,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_SpringArmComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_CameraComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_MaxHealth,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentHealth,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_HPWidgetComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AWPlayer_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AWPlayer_Statics::DependentSingletons[])() = {
@@ -190,10 +225,10 @@ AWPlayer::~AWPlayer() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AWPlayer, AWPlayer::StaticClass, TEXT("AWPlayer"), &Z_Registration_Info_UClass_AWPlayer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWPlayer), 3508752133U) },
+		{ Z_Construct_UClass_AWPlayer, AWPlayer::StaticClass, TEXT("AWPlayer"), &Z_Registration_Info_UClass_AWPlayer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWPlayer), 259118270U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_1695357947(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_4110977861(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

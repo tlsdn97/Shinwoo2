@@ -27,6 +27,15 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
     class UCapsuleComponent* DetectionCapsule;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision")
+    class USphereComponent* DamageSphere;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+    float CollisionDamage = 20.f;
+
+    UFUNCTION()
+    void OnDamageOverlap(UPrimitiveComponent* OverlappedComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,int32 OtherBodyIndex,bool bFromSweep,const FHitResult& SweepResult);
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI|Detection")
     float CapsuleRadius;
 

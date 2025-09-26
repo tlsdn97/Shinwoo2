@@ -7,14 +7,16 @@
 #include "GameFramework/CharacterMovementComponent.h" 
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
-
+#include "Components/WidgetComponent.h"
+#include "Blueprint/UserWidget.h"
+#include "Components/ProgressBar.h"
+#include "GameFramework/Controller.h"
+#include "Animation/AnimInstance.h"
 #include "PWeapon.h"
 #include "WAnimInstance.h"
-#include "Animation/AnimInstance.h"
 #include "TimerManager.h"
-#include "Engine/World.h"
-#include "GameFramework/Controller.h"
-#include <Net/UnrealNetwork.h>
+#include "WPlayerHpWidget.h"
+
 
 AWPlayer::AWPlayer()
 {
@@ -39,6 +41,12 @@ AWPlayer::AWPlayer()
 
     GetCharacterMovement()->MaxWalkSpeed = ForwardSpeed;
 
+    HPWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPWidgetComp"));
+    HPWidgetComp->SetupAttachment(RootComponent);
+
+    HPWidgetComp->SetWidgetSpace(EWidgetSpace::Screen);
+    HPWidgetComp->SetDrawSize(FVector2D(200.f, 40.f));
+    HPWidgetComp->SetRelativeLocation(FVector(0.f, 0.f, 120.f));
 }
 
 void AWPlayer::BeginPlay()
@@ -46,13 +54,18 @@ void AWPlayer::BeginPlay()
     Super::BeginPlay();
     DefaultFOV = CameraComp->FieldOfView;
 
-    if (WeaponClass)
+    CurrentHealth = MaxHealth;
+
+    if (HPWidgetComp->GetWidget() == nullptr)
     {
-        EquippedWeapon = GetWorld()->SpawnActor<APWeapon>(WeaponClass);
-        if (EquippedWeapon)
-        {
-            EquippedWeapon->AttachToCharacter(this);
-        }
+        UE_LOG(LogTemp, Warning, TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrint/Player/WBP_PlayerHp.WBP_PlayerHp'"));
+    }
+
+    HPWidgetComp->SetWidgetSpace(bUseWorldSpaceUI ? EWidgetSpace::World : EWidgetSpace::Screen);
+    if (bUseWorldSpaceUI)
+    {
+        HPWidgetComp->SetDrawSize(FVector2D(150.f, 30.f));
+        HPWidgetComp->SetRelativeLocation(FVector(0.f, 0.f, 100.f));
     }
 }
 
@@ -181,4 +194,27 @@ void AWPlayer::EndZoom()
 APWeapon* AWPlayer::GetEquippedWeapon() const
 {
     return EquippedWeapon;
+}
+
+void AWPlayer::ApplyDamage(float Damage)
+{
+    CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.f, MaxHealth);
+    UpdateHPUI();
+
+    if (CurrentHealth <= 0.f)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Player Dead"));
+    }
+}
+
+void AWPlayer::UpdateHPUI()
+{
+    if (UUserWidget* Widget = HPWidgetComp->GetWidget())
+    {
+        UProgressBar* HPBar = Cast<UProgressBar>(Widget->GetWidgetFromName(TEXT("HPBar")));
+        if (HPBar)
+        {
+            HPBar->SetPercent(CurrentHealth / MaxHealth);
+        }
+    }
 }

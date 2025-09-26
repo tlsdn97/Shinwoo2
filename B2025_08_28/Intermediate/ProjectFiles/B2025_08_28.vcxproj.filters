@@ -60,6 +60,9 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimInstance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimNotify.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateDistance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
@@ -76,6 +79,9 @@
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WCrossHairWidget.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WDeathWidget.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WGameModeBase.cpp">
@@ -114,6 +120,9 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimInstance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimNotify.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateDistance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
@@ -130,6 +139,9 @@
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WCrossHairWidget.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WDeathWidget.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WGameModeBase.h">

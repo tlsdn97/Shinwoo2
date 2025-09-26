@@ -3,14 +3,17 @@
 
 #include "WAIMonster.h"
 #include "Components/WidgetComponent.h"
-#include "WAIHpWidget.h"
+#include "Components/SphereComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
-#include "WAIController.h"
-#include "PWeapon.h"
-#include "AIController.h"
-#include "Components/CapsuleComponent.h"
 #include "GameFramework/Actor.h"
+#include "WAIController.h"
+#include "AIController.h"
+#include "WAIHpWidget.h"
+#include "PWeapon.h"
+
 
 AWAIMonster::AWAIMonster()
 {
@@ -22,6 +25,12 @@ AWAIMonster::AWAIMonster()
     DetectionCapsule->SetCollisionResponseToAllChannels(ECR_Ignore);
     DetectionCapsule->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
     DetectionCapsule->SetGenerateOverlapEvents(true);
+
+    DamageSphere = CreateDefaultSubobject<USphereComponent>(TEXT("DamageSphere"));
+    DamageSphere->SetupAttachment(RootComponent);
+    DamageSphere->InitSphereRadius(100.f);
+    DamageSphere->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
+    DamageSphere->SetGenerateOverlapEvents(true);
 }
 
 void AWAIMonster::TakeDamageFromBullet(float Damage)
@@ -77,6 +86,22 @@ void AWAIMonster::BeginPlay()
 
     DetectionCapsule->OnComponentBeginOverlap.AddDynamic(this, &AWAIMonster::OnDetectionBegin);
     DetectionCapsule->OnComponentEndOverlap.AddDynamic(this, &AWAIMonster::OnDetectionEnd);
+
+    DamageSphere->OnComponentBeginOverlap.AddDynamic(this, &AWAIMonster::OnDamageOverlap);
+}
+
+void AWAIMonster::OnDamageOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+    if (OtherActor && OtherActor->ActorHasTag("Player"))
+    {
+        UGameplayStatics::ApplyDamage(
+            OtherActor,
+            CollisionDamage,
+            GetController(),
+            this,
+            UDamageType::StaticClass()
+        );
+    }
 }
 
 void AWAIMonster::OnDetectionBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

@@ -2,4 +2,12 @@
 
 
 #include "WPlayerHpWidget.h"
+#include "Components/ProgressBar.h"
 
+void UWPlayerHpWidget::UpdateHP(float Percent)
+{
+    if (PHpBar)
+    {
+        PHpBar->SetPercent(Percent);
+    }
+}

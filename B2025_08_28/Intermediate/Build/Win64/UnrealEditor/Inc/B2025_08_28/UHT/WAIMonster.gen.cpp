@@ -19,6 +19,7 @@ ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UCapsuleComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_USphereComponent_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 UPackage* Z_Construct_UPackage__Script_B2025_08_28();
 // End Cross Module References
@@ -69,6 +70,87 @@ DEFINE_FUNCTION(AWAIMonster::execHandleWeaponDamage)
 	P_NATIVE_END;
 }
 // End Class AWAIMonster Function HandleWeaponDamage
+
+// Begin Class AWAIMonster Function OnDamageOverlap
+struct Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics
+{
+	struct WAIMonster_eventOnDamageOverlap_Parms
+	{
+		UPrimitiveComponent* OverlappedComp;
+		AActor* OtherActor;
+		UPrimitiveComponent* OtherComp;
+		int32 OtherBodyIndex;
+		bool bFromSweep;
+		FHitResult SweepResult;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/WAIMonster.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComp_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OtherComp_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SweepResult_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_OverlappedComp;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_OtherActor;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_OtherComp;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_OtherBodyIndex;
+	static void NewProp_bFromSweep_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bFromSweep;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_SweepResult;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OverlappedComp = { "OverlappedComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIMonster_eventOnDamageOverlap_Parms, OverlappedComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OverlappedComp_MetaData), NewProp_OverlappedComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OtherActor = { "OtherActor", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIMonster_eventOnDamageOverlap_Parms, OtherActor), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OtherComp = { "OtherComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIMonster_eventOnDamageOverlap_Parms, OtherComp), Z_Construct_UClass_UPrimitiveComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OtherComp_MetaData), NewProp_OtherComp_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OtherBodyIndex = { "OtherBodyIndex", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIMonster_eventOnDamageOverlap_Parms, OtherBodyIndex), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_bFromSweep_SetBit(void* Obj)
+{
+	((WAIMonster_eventOnDamageOverlap_Parms*)Obj)->bFromSweep = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_bFromSweep = { "bFromSweep", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(WAIMonster_eventOnDamageOverlap_Parms), &Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_bFromSweep_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_SweepResult = { "SweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIMonster_eventOnDamageOverlap_Parms, SweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SweepResult_MetaData), NewProp_SweepResult_MetaData) }; // 4100991306
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OverlappedComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OtherActor,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OtherComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_OtherBodyIndex,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_bFromSweep,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::NewProp_SweepResult,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWAIMonster, nullptr, "OnDamageOverlap", nullptr, nullptr, Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::PropPointers), sizeof(Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::WAIMonster_eventOnDamageOverlap_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::Function_MetaDataParams), Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::WAIMonster_eventOnDamageOverlap_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AWAIMonster_OnDamageOverlap()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWAIMonster_OnDamageOverlap_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AWAIMonster::execOnDamageOverlap)
+{
+	P_GET_OBJECT(UPrimitiveComponent,Z_Param_OverlappedComp);
+	P_GET_OBJECT(AActor,Z_Param_OtherActor);
+	P_GET_OBJECT(UPrimitiveComponent,Z_Param_OtherComp);
+	P_GET_PROPERTY(FIntProperty,Z_Param_OtherBodyIndex);
+	P_GET_UBOOL(Z_Param_bFromSweep);
+	P_GET_STRUCT_REF(FHitResult,Z_Param_Out_SweepResult);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnDamageOverlap(Z_Param_OverlappedComp,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_OtherBodyIndex,Z_Param_bFromSweep,Z_Param_Out_SweepResult);
+	P_NATIVE_END;
+}
+// End Class AWAIMonster Function OnDamageOverlap
 
 // Begin Class AWAIMonster Function OnDetectionBegin
 struct Z_Construct_UFunction_AWAIMonster_OnDetectionBegin_Statics
@@ -262,6 +344,7 @@ void AWAIMonster::StaticRegisterNativesAWAIMonster()
 	UClass* Class = AWAIMonster::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "HandleWeaponDamage", &AWAIMonster::execHandleWeaponDamage },
+		{ "OnDamageOverlap", &AWAIMonster::execOnDamageOverlap },
 		{ "OnDetectionBegin", &AWAIMonster::execOnDetectionBegin },
 		{ "OnDetectionEnd", &AWAIMonster::execOnDetectionEnd },
 		{ "TakeDamageFromBullet", &AWAIMonster::execTakeDamageFromBullet },
@@ -288,6 +371,15 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DetectionCapsule_MetaData[] = {
 		{ "Category", "AI" },
 		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/WAIMonster.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DamageSphere_MetaData[] = {
+		{ "Category", "Collision" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/WAIMonster.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CollisionDamage_MetaData[] = {
+		{ "Category", "Damage" },
 		{ "ModuleRelativePath", "Public/WAIMonster.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CapsuleRadius_MetaData[] = {
@@ -317,6 +409,8 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Health;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DetectionCapsule;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_DamageSphere;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CollisionDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CapsuleRadius;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CapsuleHalfHeight;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHP;
@@ -327,6 +421,7 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AWAIMonster_HandleWeaponDamage, "HandleWeaponDamage" }, // 2846013191
+		{ &Z_Construct_UFunction_AWAIMonster_OnDamageOverlap, "OnDamageOverlap" }, // 4226494858
 		{ &Z_Construct_UFunction_AWAIMonster_OnDetectionBegin, "OnDetectionBegin" }, // 1774502709
 		{ &Z_Construct_UFunction_AWAIMonster_OnDetectionEnd, "OnDetectionEnd" }, // 3634650876
 		{ &Z_Construct_UFunction_AWAIMonster_TakeDamageFromBullet, "TakeDamageFromBullet" }, // 3786529256
@@ -339,6 +434,8 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, Health), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Health_MetaData), NewProp_Health_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_DetectionCapsule = { "DetectionCapsule", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, DetectionCapsule), Z_Construct_UClass_UCapsuleComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DetectionCapsule_MetaData), NewProp_DetectionCapsule_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_DamageSphere = { "DamageSphere", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, DamageSphere), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageSphere_MetaData), NewProp_DamageSphere_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_CollisionDamage = { "CollisionDamage", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, CollisionDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CollisionDamage_MetaData), NewProp_CollisionDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_CapsuleRadius = { "CapsuleRadius", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, CapsuleRadius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CapsuleRadius_MetaData), NewProp_CapsuleRadius_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_CapsuleHalfHeight = { "CapsuleHalfHeight", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, CapsuleHalfHeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CapsuleHalfHeight_MetaData), NewProp_CapsuleHalfHeight_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_MaxHP = { "MaxHP", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, MaxHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHP_MetaData), NewProp_MaxHP_MetaData) };
@@ -348,6 +445,8 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWAIMonster_St
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWAIMonster_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_Health,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_DetectionCapsule,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_DamageSphere,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_CollisionDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_CapsuleRadius,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_CapsuleHalfHeight,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_MaxHP,
@@ -396,10 +495,10 @@ AWAIMonster::~AWAIMonster() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AWAIMonster, AWAIMonster::StaticClass, TEXT("AWAIMonster"), &Z_Registration_Info_UClass_AWAIMonster, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWAIMonster), 2775994804U) },
+		{ Z_Construct_UClass_AWAIMonster, AWAIMonster::StaticClass, TEXT("AWAIMonster"), &Z_Registration_Info_UClass_AWAIMonster, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWAIMonster), 241173462U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_3027335546(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_1405749553(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

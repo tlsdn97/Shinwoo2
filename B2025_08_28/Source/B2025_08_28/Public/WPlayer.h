@@ -78,5 +78,21 @@ protected:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     class UCameraComponent* CameraComp;
+
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
+    float MaxHealth = 100.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
+    float CurrentHealth;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player|UI")
+   class UWidgetComponent* HPWidgetComp;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player|UI")
+    bool bUseWorldSpaceUI = false;
+
+    void ApplyDamage(float Damage);
+    void UpdateHPUI();
 };
 
