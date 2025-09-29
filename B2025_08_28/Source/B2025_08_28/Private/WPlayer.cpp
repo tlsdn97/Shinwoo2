@@ -56,17 +56,6 @@ void AWPlayer::BeginPlay()
 
     CurrentHealth = MaxHealth;
 
-    if (HPWidgetComp->GetWidget() == nullptr)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrint/Player/WBP_PlayerHp.WBP_PlayerHp'"));
-    }
-
-    HPWidgetComp->SetWidgetSpace(bUseWorldSpaceUI ? EWidgetSpace::World : EWidgetSpace::Screen);
-    if (bUseWorldSpaceUI)
-    {
-        HPWidgetComp->SetDrawSize(FVector2D(150.f, 30.f));
-        HPWidgetComp->SetRelativeLocation(FVector(0.f, 0.f, 100.f));
-    }
 }
 
 void AWPlayer::Tick(float DeltaSeconds)
