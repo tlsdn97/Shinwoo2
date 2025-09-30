@@ -9,6 +9,7 @@
 #include "TimerManager.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/Character.h"
+#include "WDamageZone.h"
 
 APWeapon::APWeapon()
 {

@@ -2,26 +2,62 @@
 
 
 #include "WDamageZone.h"
+#include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "NiagaraComponent.h"
 
-// Sets default values
+
 AWDamageZone::AWDamageZone()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = false;
 
+    RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+
+    Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
+    Collision->SetupAttachment(RootComponent);
+    Collision->SetCollisionProfileName(TEXT("Trigger"));
+    Collision->OnComponentBeginOverlap.AddDynamic(this, &AWDamageZone::OnOverlapBegin);
+    Collision->OnComponentEndOverlap.AddDynamic(this, &AWDamageZone::OnOverlapEnd);
+
+    FXComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("FXComponent"));
+    FXComponent->SetupAttachment(RootComponent);
+    FXComponent->bAutoActivate = true;
 }
 
-// Called when the game starts or when spawned
-void AWDamageZone::BeginPlay()
+void AWDamageZone::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	Super::BeginPlay();
-	
+    if (OtherActor && OtherActor->ActorHasTag("Player"))
+    {
+        OverlappingActors.AddUnique(OtherActor);
+
+        if (!GetWorldTimerManager().IsTimerActive(DamageTimerHandle))
+        {
+            GetWorldTimerManager().SetTimer(DamageTimerHandle, [this]()
+                {
+                    for (AActor* Actor : OverlappingActors)
+                    {
+                        ApplyDamage(Actor);
+                    }
+                }, DamageInterval, true);
+        }
+    }
 }
 
-// Called every frame
-void AWDamageZone::Tick(float DeltaTime)
+void AWDamageZone::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	Super::Tick(DeltaTime);
+    OverlappingActors.Remove(OtherActor);
 
+    if (OverlappingActors.Num() == 0)
+    {
+        GetWorldTimerManager().ClearTimer(DamageTimerHandle);
+    }
+}
+
+void AWDamageZone::ApplyDamage(AActor* DamagedActor)
+{
+    if (DamagedActor)
+    {
+        UGameplayStatics::ApplyDamage(DamagedActor, DamagePerTick, nullptr, this, nullptr);
+    }
 }
 
