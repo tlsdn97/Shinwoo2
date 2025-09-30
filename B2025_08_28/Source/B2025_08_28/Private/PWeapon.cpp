@@ -73,10 +73,10 @@ void APWeapon::Fire()
     FActorSpawnParameters SpawnParams;
     SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
+
     AWBullet* Bullet = World->SpawnActor<AWBullet>(BulletClass, MuzzleLocation, MuzzleRotation, SpawnParams);
     if (Bullet)
     {
         Bullet->FireInDirection(MuzzleRotation.Vector());
     }
 }
-

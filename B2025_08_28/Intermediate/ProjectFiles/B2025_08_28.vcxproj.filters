@@ -63,10 +63,25 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimNotify.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBoss.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBossAnimInstance.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBossController.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_CheckAttackRange.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateDistance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTService_UpdateTarget.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTTask_Attack.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBTTask_MoveToTarget.cpp">
@@ -79,6 +94,9 @@
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WCrossHairWidget.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WDamageZone.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WDeathWidget.cpp">
@@ -123,10 +141,25 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimNotify.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBoss.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBossAnimInstance.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBossController.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_CheckAttackRange.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateDistance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTService_UpdateTarget.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTTask_Attack.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBTTask_MoveToTarget.h">
@@ -139,6 +172,9 @@
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WCrossHairWidget.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WDamageZone.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WDeathWidget.h">
