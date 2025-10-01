@@ -28,15 +28,4 @@ void UWAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
     bIsInAir = OwnerChar->GetCharacterMovement()->IsFalling();
 }
 
-void UWAnimInstance::AnimNotify_OnFire()
-{
-    if (AWPlayer* OwnerChar = Cast<AWPlayer>(TryGetPawnOwner()))
-    {
-        if (APWeapon* Weapon = OwnerChar->GetEquippedWeapon())
-        {
-            Weapon->Fire();
-        }
-    }
-}
-
 

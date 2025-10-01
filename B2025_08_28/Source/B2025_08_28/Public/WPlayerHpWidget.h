@@ -15,10 +15,14 @@ class B2025_08_28_API UWPlayerHpWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable)
-	void UpdateHP(float Percent);
-protected:
-	UPROPERTY(meta = (BindWdiget))
-	class UProgressBar* PHpBar;
-	
+	virtual void NativeConstruct() override;
+
+	UPROPERTY(meta = (BindWidget))
+	class UImage* PlayerImage;
+
+	UPROPERTY(meta = (BindWidget))
+	class UProgressBar* PlayerHp;
+
+	void PUpdateHpBar(float CurrentHp, float MaxHp);
+
 };

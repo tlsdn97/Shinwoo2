@@ -4,10 +4,15 @@
 #include "WPlayerHpWidget.h"
 #include "Components/ProgressBar.h"
 
-void UWPlayerHpWidget::UpdateHP(float Percent)
+void UWPlayerHpWidget::NativeConstruct()
 {
-    if (PHpBar)
-    {
-        PHpBar->SetPercent(Percent);
-    }
+
+}
+
+void UWPlayerHpWidget::PUpdateHpBar(float CurrentHp, float MaxHp)
+{
+	if (PlayerHp)
+	{
+		PlayerHp->SetPercent(FMath::Clamp(CurrentHp / MaxHp, 0.0f, 1.0f));
+	}
 }

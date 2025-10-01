@@ -12,8 +12,6 @@ void EmptyLinkFunctionForGeneratedCodeWHUD() {}
 // Begin Cross Module References
 B2025_08_28_API UClass* Z_Construct_UClass_AWHUD();
 B2025_08_28_API UClass* Z_Construct_UClass_AWHUD_NoRegister();
-B2025_08_28_API UClass* Z_Construct_UClass_UWCrossHairWidget_NoRegister();
-COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 ENGINE_API UClass* Z_Construct_UClass_AHUD();
 UPackage* Z_Construct_UPackage__Script_B2025_08_28();
 // End Cross Module References
@@ -39,31 +37,13 @@ struct Z_Construct_UClass_AWHUD_Statics
 		{ "ModuleRelativePath", "Public/WHUD.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CrosshairClass_MetaData[] = {
-		{ "Category", "UI" },
-		{ "ModuleRelativePath", "Public/WHUD.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CrosshairWidget_MetaData[] = {
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/WHUD.h" },
-	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FClassPropertyParams NewProp_CrosshairClass;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_CrosshairWidget;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AWHUD>::IsAbstract,
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AWHUD_Statics::NewProp_CrosshairClass = { "CrosshairClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWHUD, CrosshairClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UWCrossHairWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrosshairClass_MetaData), NewProp_CrosshairClass_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWHUD_Statics::NewProp_CrosshairWidget = { "CrosshairWidget", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWHUD, CrosshairWidget), Z_Construct_UClass_UWCrossHairWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CrosshairWidget_MetaData), NewProp_CrosshairWidget_MetaData) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWHUD_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWHUD_Statics::NewProp_CrosshairClass,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWHUD_Statics::NewProp_CrosshairWidget,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AWHUD_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AWHUD_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_AHUD,
 	(UObject* (*)())Z_Construct_UPackage__Script_B2025_08_28,
@@ -75,11 +55,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_AWHUD_Statics::ClassPar
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	nullptr,
-	Z_Construct_UClass_AWHUD_Statics::PropPointers,
+	nullptr,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	0,
-	UE_ARRAY_COUNT(Z_Construct_UClass_AWHUD_Statics::PropPointers),
+	0,
 	0,
 	0x009002ACu,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AWHUD_Statics::Class_MetaDataParams), Z_Construct_UClass_AWHUD_Statics::Class_MetaDataParams)
@@ -105,10 +85,10 @@ AWHUD::~AWHUD() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHUD_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AWHUD, AWHUD::StaticClass, TEXT("AWHUD"), &Z_Registration_Info_UClass_AWHUD, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWHUD), 2926208315U) },
+		{ Z_Construct_UClass_AWHUD, AWHUD::StaticClass, TEXT("AWHUD"), &Z_Registration_Info_UClass_AWHUD, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWHUD), 2224832069U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHUD_h_2314202567(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHUD_h_2392743654(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHUD_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHUD_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

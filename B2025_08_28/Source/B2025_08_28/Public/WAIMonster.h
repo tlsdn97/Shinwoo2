@@ -15,12 +15,6 @@ public:
 	AWAIMonster();
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
     float Health = 100.f;
-
-    UFUNCTION()
-    void TakeDamageFromBullet(float Damage);
-
-    UFUNCTION()
-    void HandleWeaponDamage(AActor* DamagedActor, float Damage);
 protected:
     virtual void BeginPlay() override;
 
@@ -58,10 +52,6 @@ protected:
     UPROPERTY(VisibleAnywhere, Category = "HP")
     float CurrentHP;
 
-    UPROPERTY(EditDefaultsOnly, Category = "UI")
-    TSubclassOf<class UWAIHpWidget> HPWidgetClass;
-
-    UPROPERTY()
-    UWAIHpWidget* HPWidget;
-
+    UPROPERTY(EditAnywhere, Category = "MySettings")
+    class UWidgetComponent* hpFloatingWidget;
 };

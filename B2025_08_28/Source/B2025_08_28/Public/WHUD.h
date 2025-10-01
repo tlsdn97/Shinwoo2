@@ -13,13 +13,4 @@ UCLASS()
 class B2025_08_28_API AWHUD : public AHUD
 {
 	GENERATED_BODY()
-public:
-    virtual void BeginPlay() override;
-
-protected:
-    UPROPERTY(EditDefaultsOnly, Category = "UI")
-    TSubclassOf<class UWCrossHairWidget> CrosshairClass;
-
-    UPROPERTY()
-    class UWCrossHairWidget* CrosshairWidget;
 };

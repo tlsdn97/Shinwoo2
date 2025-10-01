@@ -17,43 +17,9 @@ ENGINE_API UClass* Z_Construct_UClass_UAnimInstance();
 UPackage* Z_Construct_UPackage__Script_B2025_08_28();
 // End Cross Module References
 
-// Begin Class UWAnimInstance Function AnimNotify_OnFire
-struct Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/WAnimInstance.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWAnimInstance, nullptr, "AnimNotify_OnFire", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire_Statics::Function_MetaDataParams), Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UWAnimInstance::execAnimNotify_OnFire)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->AnimNotify_OnFire();
-	P_NATIVE_END;
-}
-// End Class UWAnimInstance Function AnimNotify_OnFire
-
 // Begin Class UWAnimInstance
 void UWAnimInstance::StaticRegisterNativesUWAnimInstance()
 {
-	UClass* Class = UWAnimInstance::StaticClass();
-	static const FNameNativePtrPair Funcs[] = {
-		{ "AnimNotify_OnFire", &UWAnimInstance::execAnimNotify_OnFire },
-	};
-	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
 IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UWAnimInstance);
 UClass* Z_Construct_UClass_UWAnimInstance_NoRegister()
@@ -101,10 +67,6 @@ struct Z_Construct_UClass_UWAnimInstance_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsFiring;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
-	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWAnimInstance_AnimNotify_OnFire, "AnimNotify_OnFire" }, // 2588897330
-	};
-	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UWAnimInstance>::IsAbstract,
 	};
@@ -141,11 +103,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UWAnimInstance_Statics:
 	nullptr,
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
-	FuncInfo,
+	nullptr,
 	Z_Construct_UClass_UWAnimInstance_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
-	UE_ARRAY_COUNT(FuncInfo),
+	0,
 	UE_ARRAY_COUNT(Z_Construct_UClass_UWAnimInstance_Statics::PropPointers),
 	0,
 	0x009000A8u,
@@ -172,10 +134,10 @@ UWAnimInstance::~UWAnimInstance() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UWAnimInstance, UWAnimInstance::StaticClass, TEXT("UWAnimInstance"), &Z_Registration_Info_UClass_UWAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWAnimInstance), 2964550891U) },
+		{ Z_Construct_UClass_UWAnimInstance, UWAnimInstance::StaticClass, TEXT("UWAnimInstance"), &Z_Registration_Info_UClass_UWAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWAnimInstance), 3353199369U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_850224170(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_1992353186(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

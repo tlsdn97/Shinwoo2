@@ -15,7 +15,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define B2025_08_28_WAIHpWidget_generated_h
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execUpdateHP);
+	DECLARE_FUNCTION(execUpdateHpBar);
 
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_15_INCLASS_NO_PURE_DECLS \

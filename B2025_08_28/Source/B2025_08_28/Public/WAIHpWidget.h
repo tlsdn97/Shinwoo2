@@ -13,14 +13,11 @@ UCLASS()
 class B2025_08_28_API UWAIHpWidget : public UUserWidget
 {
 	GENERATED_BODY()
+
 public:
-    UFUNCTION(BlueprintCallable)
-    void UpdateHP(float Current, float Max);
+	UFUNCTION()
+	void UpdateHpBar(float currentHp, float maxHp);
 
-protected:
-    UPROPERTY(meta = (BindWidget))
-    class UProgressBar* HPBar;
-
-    UPROPERTY(meta = (BindWidget))
-    class UTextBlock* HPText;
+	UPROPERTY(meta = (BindWidget))
+	class UProgressBar* pb_healthBar;
 };

@@ -13,64 +13,63 @@ void EmptyLinkFunctionForGeneratedCodeWAIHpWidget() {}
 B2025_08_28_API UClass* Z_Construct_UClass_UWAIHpWidget();
 B2025_08_28_API UClass* Z_Construct_UClass_UWAIHpWidget_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UProgressBar_NoRegister();
-UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UUserWidget();
 UPackage* Z_Construct_UPackage__Script_B2025_08_28();
 // End Cross Module References
 
-// Begin Class UWAIHpWidget Function UpdateHP
-struct Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics
+// Begin Class UWAIHpWidget Function UpdateHpBar
+struct Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics
 {
-	struct WAIHpWidget_eventUpdateHP_Parms
+	struct WAIHpWidget_eventUpdateHpBar_Parms
 	{
-		float Current;
-		float Max;
+		float currentHp;
+		float maxHp;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/WAIHpWidget.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_Current;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_Max;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_currentHp;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_maxHp;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::NewProp_Current = { "Current", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIHpWidget_eventUpdateHP_Parms, Current), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::NewProp_Max = { "Max", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIHpWidget_eventUpdateHP_Parms, Max), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::NewProp_Current,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::NewProp_Max,
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::NewProp_currentHp = { "currentHp", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIHpWidget_eventUpdateHpBar_Parms, currentHp), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::NewProp_maxHp = { "maxHp", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WAIHpWidget_eventUpdateHpBar_Parms, maxHp), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::NewProp_currentHp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::NewProp_maxHp,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWAIHpWidget, nullptr, "UpdateHP", nullptr, nullptr, Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::PropPointers), sizeof(Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::WAIHpWidget_eventUpdateHP_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::Function_MetaDataParams), Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::WAIHpWidget_eventUpdateHP_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UWAIHpWidget_UpdateHP()
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UWAIHpWidget, nullptr, "UpdateHpBar", nullptr, nullptr, Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::PropPointers), sizeof(Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::WAIHpWidget_eventUpdateHpBar_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::Function_MetaDataParams), Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::WAIHpWidget_eventUpdateHpBar_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWAIHpWidget_UpdateHP_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UWAIHpWidget::execUpdateHP)
+DEFINE_FUNCTION(UWAIHpWidget::execUpdateHpBar)
 {
-	P_GET_PROPERTY(FFloatProperty,Z_Param_Current);
-	P_GET_PROPERTY(FFloatProperty,Z_Param_Max);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_currentHp);
+	P_GET_PROPERTY(FFloatProperty,Z_Param_maxHp);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->UpdateHP(Z_Param_Current,Z_Param_Max);
+	P_THIS->UpdateHpBar(Z_Param_currentHp,Z_Param_maxHp);
 	P_NATIVE_END;
 }
-// End Class UWAIHpWidget Function UpdateHP
+// End Class UWAIHpWidget Function UpdateHpBar
 
 // Begin Class UWAIHpWidget
 void UWAIHpWidget::StaticRegisterNativesUWAIHpWidget()
 {
 	UClass* Class = UWAIHpWidget::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
-		{ "UpdateHP", &UWAIHpWidget::execUpdateHP },
+		{ "UpdateHpBar", &UWAIHpWidget::execUpdateHpBar },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -89,23 +88,17 @@ struct Z_Construct_UClass_UWAIHpWidget_Statics
 		{ "IncludePath", "WAIHpWidget.h" },
 		{ "ModuleRelativePath", "Public/WAIHpWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HPBar_MetaData[] = {
-		{ "BindWidget", "" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/WAIHpWidget.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HPText_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_pb_healthBar_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/WAIHpWidget.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_HPBar;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_HPText;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_pb_healthBar;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UWAIHpWidget_UpdateHP, "UpdateHP" }, // 3028215736
+		{ &Z_Construct_UFunction_UWAIHpWidget_UpdateHpBar, "UpdateHpBar" }, // 1631250254
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -113,11 +106,9 @@ struct Z_Construct_UClass_UWAIHpWidget_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UWAIHpWidget_Statics::NewProp_HPBar = { "HPBar", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UWAIHpWidget, HPBar), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HPBar_MetaData), NewProp_HPBar_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UWAIHpWidget_Statics::NewProp_HPText = { "HPText", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UWAIHpWidget, HPText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HPText_MetaData), NewProp_HPText_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UWAIHpWidget_Statics::NewProp_pb_healthBar = { "pb_healthBar", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UWAIHpWidget, pb_healthBar), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_pb_healthBar_MetaData), NewProp_pb_healthBar_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UWAIHpWidget_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAIHpWidget_Statics::NewProp_HPBar,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAIHpWidget_Statics::NewProp_HPText,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAIHpWidget_Statics::NewProp_pb_healthBar,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UWAIHpWidget_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UWAIHpWidget_Statics::DependentSingletons[])() = {
@@ -161,10 +152,10 @@ UWAIHpWidget::~UWAIHpWidget() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UWAIHpWidget, UWAIHpWidget::StaticClass, TEXT("UWAIHpWidget"), &Z_Registration_Info_UClass_UWAIHpWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWAIHpWidget), 3101671271U) },
+		{ Z_Construct_UClass_UWAIHpWidget, UWAIHpWidget::StaticClass, TEXT("UWAIHpWidget"), &Z_Registration_Info_UClass_UWAIHpWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWAIHpWidget), 4257416593U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_4257286173(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_2106098779(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIHpWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

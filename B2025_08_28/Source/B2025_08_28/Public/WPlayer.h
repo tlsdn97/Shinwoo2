@@ -15,13 +15,18 @@ public:
 	AWPlayer();
 
     void PlayFireMontage();
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+    TSubclassOf<class UWDamageLogWidget> DamageWidgetClass;
+
+    int32 TotalDamage;
+
+    UFUNCTION(BlueprintCallable)
+    void OnDamaged(int32 Damage);
 protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaSeconds) override;
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-    UPROPERTY(EditDefaultsOnly, Category = "Configurations")
-    TArray<TSubclassOf<class APWeapon>> DefaultWeapons;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float ForwardSpeed = 300.f;
@@ -34,15 +39,10 @@ protected:
     void FLookUp(float Value);
     void FTurn(float Value);
 
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-    TSubclassOf<class APWeapon> WeaponClass;
+    UPROPERTY(EditAnywhere, Category = "AttackAniMontage")
+    class UAnimMontage* meleeAttackAniMontage;
 
-    UPROPERTY(EditDefaultsOnly, Category = "Animation")
-    class UAnimMontage* FireMontage;
-
-    void StartFire();
-    void StopFire();
-    void HandleFire();
+    void MeleeAattack();
 
     void BeginZoom();
     void EndZoom();
@@ -50,28 +50,18 @@ protected:
     bool bIsFiring;
     bool bWantsToZoom;
 
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-    float FireRate;
+    void UIUpdate();
+
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float DefaultFOV = 90.f;
-
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float ZoomedFOV = 60.f;
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float ZoomInterpSpeed = 15.f;
 
 public:
-    UPROPERTY(BlueprintReadWrite)
-    bool bHasWeapon = false;
-
     UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
     int32 CurrentIndex = 0;
-
-   class APWeapon* GetEquippedWeapon() const;
-
-private:
-    APWeapon* EquippedWeapon;
-
 protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     class USpringArmComponent* SpringArmComp;
@@ -81,18 +71,16 @@ protected:
 
 public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
-    float MaxHealth = 100.f;
+    float MaxHealth = 10000.f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
     float CurrentHealth;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player|UI")
-   class UWidgetComponent* HPWidgetComp;
+   class UWPlayerHpWidget* PlayerHpWidget;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player|UI")
     bool bUseWorldSpaceUI = false;
 
-    void ApplyDamage(float Damage);
-    void UpdateHPUI();
 };
 

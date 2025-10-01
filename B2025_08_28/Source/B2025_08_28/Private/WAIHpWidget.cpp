@@ -3,18 +3,17 @@
 
 #include "WAIHpWidget.h"
 #include "Components/ProgressBar.h"
-#include "Components/TextBlock.h"
 
-void UWAIHpWidget::UpdateHP(float Current, float Max)
+
+void UWAIHpWidget::UpdateHpBar(float currentHp, float maxHp)
 {
-    if (HPBar)
-    {
-        HPBar->SetPercent(Current / Max);
-    }
-    if (HPText)
-    {
-        HPText->SetText(FText::FromString(FString::Printf(TEXT("%d / %d"),
-            FMath::RoundToInt(Current), FMath::RoundToInt(Max))));
-    }
-
+	if (maxHp <= 0.0f)
+	{
+		return;
+	}
+	currentHp = FMath::Max(currentHp, 0.0f);
+	if (IsValid(pb_healthBar))
+	{
+		pb_healthBar->SetPercent(FMath::Clamp(currentHp / maxHp, 0.0f, 1.0f));
+	}
 }

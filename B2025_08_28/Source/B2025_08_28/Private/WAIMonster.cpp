@@ -31,34 +31,12 @@ AWAIMonster::AWAIMonster()
     DamageSphere->InitSphereRadius(100.f);
     DamageSphere->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
     DamageSphere->SetGenerateOverlapEvents(true);
-}
 
-void AWAIMonster::TakeDamageFromBullet(float Damage)
-{
-    CurrentHP = FMath::Clamp(CurrentHP - Damage, 0.f, MaxHP);
-
-    if (HPWidget)
-    {
-        HPWidget->UpdateHP(CurrentHP, MaxHP);
-    }
-
-    if (CurrentHP <= 0.f)
-    {
-        Destroy(); 
-    }
-
-}
-
-void AWAIMonster::HandleWeaponDamage(AActor* DamagedActor, float Damage)
-{
-    if (DamagedActor != this) return;
-
-    Health -= Damage;
-    UE_LOG(LogTemp, Warning, TEXT("Took %.1f dmg, HP: %.1f"), Damage, Health);
-    if (Health <= 0.f)
-    {
-        Destroy();
-    }
+    hpFloatingWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("floatingWidget"));
+    hpFloatingWidget->SetupAttachment(RootComponent);
+    hpFloatingWidget->SetRelativeLocation(FVector(0, 0, 125));
+    hpFloatingWidget->SetWorldScale3D(FVector(1.0, 0.23, 0.03));
+    hpFloatingWidget->SetWidgetSpace(EWidgetSpace::Screen);
 }
 
 void AWAIMonster::BeginPlay()
@@ -66,16 +44,6 @@ void AWAIMonster::BeginPlay()
     Super::BeginPlay();
 
     CurrentHP = MaxHP;
-
-    if (HPWidgetClass)
-    {
-        HPWidget = CreateWidget<UWAIHpWidget>(GetWorld(), HPWidgetClass);
-        if (HPWidget)
-        {
-            HPWidget->AddToViewport();
-            HPWidget->UpdateHP(CurrentHP, MaxHP);
-        }
-    }
 
     if (AWAIController* AICon = Cast<AWAIController>(GetController()))
     {

@@ -24,6 +24,8 @@ public: \
 
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WBullet_h_12_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API AWBullet(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AWBullet(AWBullet&&); \
@@ -31,7 +33,7 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AWBullet); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWBullet); \
-	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AWBullet) \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AWBullet) \
 	NO_API virtual ~AWBullet();
 
 

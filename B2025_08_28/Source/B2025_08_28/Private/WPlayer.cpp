@@ -12,18 +12,20 @@
 #include "Components/ProgressBar.h"
 #include "GameFramework/Controller.h"
 #include "Animation/AnimInstance.h"
+#include "Kismet/GameplayStatics.h"
 #include "PWeapon.h"
 #include "WAnimInstance.h"
 #include "TimerManager.h"
 #include "WPlayerHpWidget.h"
+#include "WDamageLogWidget.h"
 
 
 AWPlayer::AWPlayer()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
-    FireRate = 0.15f; 
     bIsFiring = false;
+
+    TotalDamage = 0;
 
     bReplicates = true;
     SetReplicateMovement(true);
@@ -40,13 +42,28 @@ AWPlayer::AWPlayer()
     CameraComp->bUsePawnControlRotation = false;
 
     GetCharacterMovement()->MaxWalkSpeed = ForwardSpeed;
+}
 
-    HPWidgetComp = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPWidgetComp"));
-    HPWidgetComp->SetupAttachment(RootComponent);
+void AWPlayer::OnDamaged(int32 Damage)
+{
+    TotalDamage += Damage;
 
-    HPWidgetComp->SetWidgetSpace(EWidgetSpace::Screen);
-    HPWidgetComp->SetDrawSize(FVector2D(200.f, 40.f));
-    HPWidgetComp->SetRelativeLocation(FVector(0.f, 0.f, 120.f));
+    if (!DamageWidgetClass) return;
+
+    APlayerController* PC = Cast<APlayerController>(GetController());
+    if (!PC)
+    {
+        PC = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+    }
+    if (!PC) return;
+
+    UWDamageLogWidget* Widget = CreateWidget<UWDamageLogWidget>(PC, DamageWidgetClass);
+    if (!Widget) return;
+
+    FVector Offset(0.f, 0.f, 200.f);
+
+    Widget->InitWidget(this, Damage, TotalDamage, Offset);
+    Widget->AddToViewport();
 }
 
 void AWPlayer::BeginPlay()
@@ -55,6 +72,18 @@ void AWPlayer::BeginPlay()
     DefaultFOV = CameraComp->FieldOfView;
 
     CurrentHealth = MaxHealth;
+    
+    APlayerController* playerController = Cast<APlayerController>(GetController());
+    if (playerController)
+    {
+        PlayerHpWidget = CreateWidget<UWPlayerHpWidget>(playerController, LoadClass<UWPlayerHpWidget>(nullptr, TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrint/Player/WBP_PlayerHp.WBP_PlayerHp_C'")));
+
+        if (PlayerHpWidget)
+        {
+            PlayerHpWidget->AddToViewport();
+            UIUpdate();
+        }
+    }
 
 }
 
@@ -76,12 +105,11 @@ void AWPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     PlayerInputComponent->BindAxis("LookUp", this, &AWPlayer::FLookUp);
     PlayerInputComponent->BindAxis("Turn", this, &AWPlayer::FTurn);
 
-    PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AWPlayer::StartFire);
-    PlayerInputComponent->BindAction("Fire", IE_Released, this, &AWPlayer::StopFire);
+    PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &AWPlayer::MeleeAattack);
+
     PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AWPlayer::BeginZoom);
     PlayerInputComponent->BindAction("Aim", IE_Released, this, &AWPlayer::EndZoom);
 }
-
 
 void AWPlayer::FMoveForward(float Value)
 {
@@ -125,49 +153,9 @@ void AWPlayer::FTurn(float Value)
     AddControllerYawInput(Value);
 }
 
-void AWPlayer::StartFire()
+void AWPlayer::MeleeAattack()
 {
-    if (EquippedWeapon)
-    {
-        EquippedWeapon->FStopFire();
-    }
-
-    if (UWAnimInstance* AnimInst = Cast<UWAnimInstance>(GetMesh()->GetAnimInstance()))
-    {
-        AnimInst->SetIsFiring(true);
-    }
-
-    PlayFireMontage();
-}
-void AWPlayer::StopFire()
-{
-    if (EquippedWeapon)
-    {
-        EquippedWeapon->FStopFire();
-    }
-
-    if (UWAnimInstance* AnimInst = Cast<UWAnimInstance>(GetMesh()->GetAnimInstance()))
-    {
-        AnimInst->SetIsFiring(false);
-    }
-}
-
-void AWPlayer::HandleFire()
-{
-    // PlayFireMontage();
-}
-
-void AWPlayer::PlayFireMontage()
-{
-    if (FireMontage == nullptr) return;
-
-    if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
-    {
-        if (!AnimInstance->Montage_IsPlaying(FireMontage))
-        {
-            AnimInstance->Montage_Play(FireMontage, 1.0f);
-        }
-    }
+    PlayAnimMontage(meleeAttackAniMontage, 1.0f);
 }
 
 void AWPlayer::BeginZoom()
@@ -180,30 +168,11 @@ void AWPlayer::EndZoom()
     bWantsToZoom = false;
 }
 
-APWeapon* AWPlayer::GetEquippedWeapon() const
+void AWPlayer::UIUpdate()
 {
-    return EquippedWeapon;
-}
-
-void AWPlayer::ApplyDamage(float Damage)
-{
-    CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.f, MaxHealth);
-    UpdateHPUI();
-
-    if (CurrentHealth <= 0.f)
+    if (PlayerHpWidget)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Player Dead"));
-    }
-}
-
-void AWPlayer::UpdateHPUI()
-{
-    if (UUserWidget* Widget = HPWidgetComp->GetWidget())
-    {
-        UProgressBar* HPBar = Cast<UProgressBar>(Widget->GetWidgetFromName(TEXT("HPBar")));
-        if (HPBar)
-        {
-            HPBar->SetPercent(CurrentHealth / MaxHealth);
-        }
+        float HpPercent = CurrentHealth / MaxHealth;
+        PlayerHpWidget->PlayerHp->SetPercent(HpPercent);
     }
 }

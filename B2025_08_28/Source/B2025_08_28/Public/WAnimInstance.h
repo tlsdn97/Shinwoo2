@@ -16,12 +16,6 @@ class B2025_08_28_API UWAnimInstance : public UAnimInstance
 
 public:
     virtual void NativeUpdateAnimation(float DeltaSeconds) override;
-
-    void SetIsFiring(bool bNewFiring) { bIsFiring = bNewFiring; }
-
-    UFUNCTION()
-    void AnimNotify_OnFire();
-
 protected:
     UPROPERTY(BlueprintReadOnly, Category = "Movement")
     float Speed;

@@ -58,6 +58,9 @@ void AWDamageZone::ApplyDamage(AActor* DamagedActor)
     if (DamagedActor)
     {
         UGameplayStatics::ApplyDamage(DamagedActor, DamagePerTick, nullptr, this, nullptr);
+
+        UE_LOG(LogTemp, Warning, TEXT("DamageZone: %s received %f damage"),
+            *DamagedActor->GetName(), DamagePerTick);
     }
 }
 
