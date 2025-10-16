@@ -23,6 +23,7 @@ public:
 	UPROPERTY(meta = (BindWidget))
 	class UProgressBar* PlayerHp;
 
-	void PUpdateHpBar(float CurrentHp, float MaxHp);
+	UFUNCTION()
+	void UpdateHealthBar(float NewHealthPercent);
 
 };

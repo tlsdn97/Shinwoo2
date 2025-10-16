@@ -42,9 +42,6 @@
     <Filter Include="Source\B2025_08_28\Private">
       <UniqueIdentifier>{15A59B6C-8B7D-3668-8CE9-08F155E396F6}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\B2025_08_28\Private\PWeapon.cpp">
-      <Filter>Source\B2025_08_28\Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAIAnimInstance.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
@@ -58,9 +55,6 @@
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimInstance.cpp">
-      <Filter>Source\B2025_08_28\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Private\WAnimNotify.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBoss.cpp">
@@ -90,12 +84,6 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WBT_AttackTask.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Private\WBullet.cpp">
-      <Filter>Source\B2025_08_28\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Private\WCrossHairWidget.cpp">
-      <Filter>Source\B2025_08_28\Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WDamageLogWidget.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
@@ -108,7 +96,10 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WGameModeBase.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Private\WHUD.cpp">
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WHealingPotion.cpp">
+      <Filter>Source\B2025_08_28\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Private\WHealingPotionUI.cpp">
       <Filter>Source\B2025_08_28\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Private\WPlayer.cpp">
@@ -123,9 +114,6 @@
     <Filter Include="Source\B2025_08_28\Public">
       <UniqueIdentifier>{BC92EB02-13D9-3EC3-9B1F-C0CBAE3C3361}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\B2025_08_28\Public\PWeapon.h">
-      <Filter>Source\B2025_08_28\Public</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAIAnimInstance.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
@@ -139,9 +127,6 @@
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimInstance.h">
-      <Filter>Source\B2025_08_28\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Public\WAnimNotify.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBoss.h">
@@ -171,12 +156,6 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WBT_AttackTask.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Public\WBullet.h">
-      <Filter>Source\B2025_08_28\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Public\WCrossHairWidget.h">
-      <Filter>Source\B2025_08_28\Public</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WDamageLogWidget.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
@@ -189,7 +168,10 @@
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WGameModeBase.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\B2025_08_28\Public\WHUD.h">
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WHealingPotion.h">
+      <Filter>Source\B2025_08_28\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\B2025_08_28\Public\WHealingPotionUI.h">
       <Filter>Source\B2025_08_28\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\B2025_08_28\Public\WPlayer.h">

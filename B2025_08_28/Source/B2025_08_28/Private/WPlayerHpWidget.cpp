@@ -3,16 +3,25 @@
 
 #include "WPlayerHpWidget.h"
 #include "Components/ProgressBar.h"
+#include "WPlayer.h"
 
 void UWPlayerHpWidget::NativeConstruct()
 {
+    Super::NativeConstruct();
 
+    AWPlayer* Player = Cast<AWPlayer>(GetOwningPlayerPawn());
+    if (Player)
+    {
+        Player->OnHealthChanged.AddDynamic(this, &UWPlayerHpWidget::UpdateHealthBar);
+        UpdateHealthBar(Player->Health / Player->MaxHealth);
+    }
 }
 
-void UWPlayerHpWidget::PUpdateHpBar(float CurrentHp, float MaxHp)
+void UWPlayerHpWidget::UpdateHealthBar(float NewHealthPercent)
 {
-	if (PlayerHp)
-	{
-		PlayerHp->SetPercent(FMath::Clamp(CurrentHp / MaxHp, 0.0f, 1.0f));
-	}
+    if (PlayerHp)
+    {
+        PlayerHp->SetPercent(NewHealthPercent);
+    }
 }
+

@@ -18,9 +18,10 @@ struct FHitResult;
 #define B2025_08_28_WAIMonster_generated_h
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnDamageOverlapEnd); \
+	DECLARE_FUNCTION(execOnDamageOverlapBegin); \
 	DECLARE_FUNCTION(execOnDetectionEnd); \
-	DECLARE_FUNCTION(execOnDetectionBegin); \
-	DECLARE_FUNCTION(execOnDamageOverlap);
+	DECLARE_FUNCTION(execOnDetectionBegin);
 
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_12_INCLASS_NO_PURE_DECLS \

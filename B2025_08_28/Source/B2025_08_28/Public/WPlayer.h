@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "WPlayer.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChanged, float, NewHealthPercent);
+
 UCLASS()
 class B2025_08_28_API AWPlayer : public ACharacter
 {
@@ -14,8 +16,6 @@ class B2025_08_28_API AWPlayer : public ACharacter
 public:
 	AWPlayer();
 
-    void PlayFireMontage();
-
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
     TSubclassOf<class UWDamageLogWidget> DamageWidgetClass;
 
@@ -23,6 +23,9 @@ public:
 
     UFUNCTION(BlueprintCallable)
     void OnDamaged(int32 Damage);
+
+    void Attack_Hit();
+
 protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaSeconds) override;
@@ -68,10 +71,18 @@ protected:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     class UCameraComponent* CameraComp;
-
 public:
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
-    float MaxHealth = 10000.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+    float MaxHealth = 400.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+    float Health = 400.f;
+
+    UPROPERTY(BlueprintAssignable, Category = "Event")
+    FOnHealthChanged OnHealthChanged;
+
+    virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,AController* EventInstigator, AActor* DamageCauser) override;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
     float CurrentHealth;

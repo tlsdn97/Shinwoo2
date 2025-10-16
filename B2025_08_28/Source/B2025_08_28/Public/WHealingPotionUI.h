@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/HUD.h"
-#include "WHUD.generated.h"
+#include "Blueprint/UserWidget.h"
+#include "WHealingPotionUI.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class B2025_08_28_API AWHUD : public AHUD
+class B2025_08_28_API UWHealingPotionUI : public UUserWidget
 {
 	GENERATED_BODY()
+	
 };

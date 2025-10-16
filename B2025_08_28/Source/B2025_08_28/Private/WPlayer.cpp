@@ -8,17 +8,19 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/WidgetComponent.h"
+#include "Components/SphereComponent.h"
+
 #include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
+#include "WDamageLogWidget.h"
+#include "WPlayerHpWidget.h"
+
 #include "GameFramework/Controller.h"
+#include "GameFramework/Actor.h"
 #include "Animation/AnimInstance.h"
 #include "Kismet/GameplayStatics.h"
-#include "PWeapon.h"
 #include "WAnimInstance.h"
-#include "TimerManager.h"
-#include "WPlayerHpWidget.h"
-#include "WDamageLogWidget.h"
-
+#include "WAIMonster.h"
 
 AWPlayer::AWPlayer()
 {
@@ -66,6 +68,38 @@ void AWPlayer::OnDamaged(int32 Damage)
     Widget->AddToViewport();
 }
 
+void AWPlayer::Attack_Hit()
+{
+    FVector Start = GetActorLocation();
+    FVector End = Start + GetActorForwardVector() * 150.f;
+
+    FHitResult HitResult;
+    FCollisionQueryParams Params;
+    Params.AddIgnoredActor(this);
+
+    bool bHit = GetWorld()->SweepSingleByChannel(
+        HitResult,
+        Start,
+        End,
+        FQuat::Identity,
+        static_cast<ECollisionChannel>(ECC_GameTraceChannel1),
+        FCollisionShape::MakeSphere(50.f),
+        Params
+    );
+
+    DrawDebugSphere(GetWorld(), End, 50.f, 16, FColor::Red, false, 1.0f);
+
+    if (bHit)
+    {
+        AActor* HitActor = HitResult.GetActor();
+        if (HitActor)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Hit: %s"), *HitActor->GetName());
+            UGameplayStatics::ApplyDamage(HitActor, 30.f, GetController(), this, UDamageType::StaticClass());
+        }
+    }
+}
+
 void AWPlayer::BeginPlay()
 {
     Super::BeginPlay();
@@ -84,7 +118,6 @@ void AWPlayer::BeginPlay()
             UIUpdate();
         }
     }
-
 }
 
 void AWPlayer::Tick(float DeltaSeconds)
@@ -176,3 +209,16 @@ void AWPlayer::UIUpdate()
         PlayerHpWidget->PlayerHp->SetPercent(HpPercent);
     }
 }
+
+float AWPlayer::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+    Health = FMath::Clamp(Health - DamageAmount, 0.f, MaxHealth);
+
+    float HealthPercent = Health / MaxHealth;
+    OnHealthChanged.Broadcast(HealthPercent);
+
+    UE_LOG(LogTemp, Warning, TEXT("%s HP: %.1f / %.1f"), *GetName(), Health, MaxHealth);
+
+    return DamageAmount;
+}
+

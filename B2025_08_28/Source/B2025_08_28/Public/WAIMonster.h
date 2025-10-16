@@ -13,8 +13,16 @@ class B2025_08_28_API AWAIMonster : public ACharacter
 
 public:
 	AWAIMonster();
+
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-    float Health = 100.f;
+    float MaxHP;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Stats")
+    float CurrentHP;
+
+    virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
+    void HandleDeath();
+
 protected:
     virtual void BeginPlay() override;
 
@@ -25,10 +33,10 @@ protected:
     class USphereComponent* DamageSphere;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
-    float CollisionDamage = 20.f;
+    float DamagePerTick = 10.f;
 
-    UFUNCTION()
-    void OnDamageOverlap(UPrimitiveComponent* OverlappedComp,AActor* OtherActor,UPrimitiveComponent* OtherComp,int32 OtherBodyIndex,bool bFromSweep,const FHitResult& SweepResult);
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+    float DamageInterval = 1.0f;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI|Detection")
     float CapsuleRadius;
@@ -37,21 +45,32 @@ protected:
     float CapsuleHalfHeight;
 
     UFUNCTION()
-    void OnDetectionBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
-        bool bFromSweep, const FHitResult& SweepResult);
+    void OnDetectionBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
 
     UFUNCTION()
-    void OnDetectionEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
-        UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-
-protected:
-    UPROPERTY(EditAnywhere, Category = "HP")
-    float MaxHP = 100.f;
-
-    UPROPERTY(VisibleAnywhere, Category = "HP")
-    float CurrentHP;
+    void OnDetectionEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
     UPROPERTY(EditAnywhere, Category = "MySettings")
     class UWidgetComponent* hpFloatingWidget;
+
+private:
+private:
+    FTimerHandle DamageTimerHandle;
+    AActor* CurrentTarget;
+
+    void ApplyPeriodicDamage();
+
+    UFUNCTION()
+    void OnDamageOverlapBegin(UPrimitiveComponent* OverlappedComp,
+        AActor* OtherActor,
+        UPrimitiveComponent* OtherComp,
+        int32 OtherBodyIndex,
+        bool bFromSweep,
+        const FHitResult& SweepResult);
+
+    UFUNCTION()
+    void OnDamageOverlapEnd(UPrimitiveComponent* OverlappedComp,
+        AActor* OtherActor,
+        UPrimitiveComponent* OtherComp,
+        int32 OtherBodyIndex);
 };
