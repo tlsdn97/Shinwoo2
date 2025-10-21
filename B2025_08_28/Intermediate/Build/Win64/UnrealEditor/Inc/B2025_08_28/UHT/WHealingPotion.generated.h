@@ -9,10 +9,17 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef B2025_08_28_WHealingPotion_generated_h
 #error "WHealingPotion.generated.h already included, missing '#pragma once' in WHealingPotion.h"
 #endif
 #define B2025_08_28_WHealingPotion_generated_h
+
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHealingPotion_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnOverlapBegin);
+
 
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHealingPotion_h_12_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +46,7 @@ public: \
 #define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHealingPotion_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHealingPotion_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHealingPotion_h_12_INCLASS_NO_PURE_DECLS \
 	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WHealingPotion_h_12_ENHANCED_CONSTRUCTORS \
 private: \

@@ -7,6 +7,7 @@
 #include "WPlayer.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChanged, float, NewHealthPercent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPotionCountChanged, int32, NewPotionCount);
 
 UCLASS()
 class B2025_08_28_API AWPlayer : public ACharacter
@@ -26,6 +27,8 @@ public:
 
     void Attack_Hit();
 
+    bool bIsRunning = false;
+
 protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaSeconds) override;
@@ -36,6 +39,9 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float BackwardSpeed = 200.f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+    float RunSpeed = 800.0f;
 
     void FMoveForward(float Value);
     void FMoveRight(float Value);
@@ -49,6 +55,9 @@ protected:
 
     void BeginZoom();
     void EndZoom();
+
+    void FStartRunning();
+    void FStopRunning();
 
     bool bIsFiring;
     bool bWantsToZoom;
@@ -72,6 +81,11 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     class UCameraComponent* CameraComp;
 public:
+    UPROPERTY(BlueprintAssignable, Category = "Event")
+    FOnHealthChanged OnHealthChanged;
+
+    UPROPERTY(BlueprintAssignable, Category = "Event")
+    FOnPotionCountChanged OnPotionCountChanged;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
     float MaxHealth = 400.f;
@@ -79,10 +93,16 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
     float Health = 400.f;
 
-    UPROPERTY(BlueprintAssignable, Category = "Event")
-    FOnHealthChanged OnHealthChanged;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+    int32 PotionCount = 0;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
+    float HealAmount = 30.f;
 
     virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent,AController* EventInstigator, AActor* DamageCauser) override;
+
+    void UsePotion();
+    void AddPotion(int32 Amount);
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="Player|Stats")
     float CurrentHealth;

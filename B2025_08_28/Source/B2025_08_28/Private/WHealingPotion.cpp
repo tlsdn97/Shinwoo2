@@ -2,26 +2,45 @@
 
 
 #include "WHealingPotion.h"
+#include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "WPlayer.h"
+#include "Kismet/GameplayStatics.h"
 
-// Sets default values
+
 AWHealingPotion::AWHealingPotion()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
+
+	PrimaryActorTick.bCanEverTick = false;
+
+	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
+	RootComponent = MeshComp;
+	MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComp"));
+	CollisionComp->SetupAttachment(RootComponent);
+	CollisionComp->InitSphereRadius(80.f);
+	CollisionComp->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 
 }
 
-// Called when the game starts or when spawned
 void AWHealingPotion::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &AWHealingPotion::OnOverlapBegin);
 }
 
-// Called every frame
-void AWHealingPotion::Tick(float DeltaTime)
+void AWHealingPotion::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	Super::Tick(DeltaTime);
+	AWPlayer* Player = Cast<AWPlayer>(OtherActor);
+	if (Player)
+	{
+		Player->AddPotion(1); // 플레이어에 포션 추가 함수 호출
+		UE_LOG(LogTemp, Warning, TEXT("Potion picked up!"));
 
+		Destroy(); // 포션 아이템 제거
+	}
 }
 

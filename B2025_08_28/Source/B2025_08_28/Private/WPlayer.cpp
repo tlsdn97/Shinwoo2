@@ -22,6 +22,7 @@
 #include "WAnimInstance.h"
 #include "WAIMonster.h"
 
+
 AWPlayer::AWPlayer()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -106,7 +107,7 @@ void AWPlayer::BeginPlay()
     DefaultFOV = CameraComp->FieldOfView;
 
     CurrentHealth = MaxHealth;
-    
+
     APlayerController* playerController = Cast<APlayerController>(GetController());
     if (playerController)
     {
@@ -140,8 +141,12 @@ void AWPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
     PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &AWPlayer::MeleeAattack);
 
+    PlayerInputComponent->BindAction("Run", IE_Pressed, this, &AWPlayer::FStartRunning);
+    PlayerInputComponent->BindAction("Run", IE_Released, this, &AWPlayer::FStopRunning);
+
     PlayerInputComponent->BindAction("Aim", IE_Pressed, this, &AWPlayer::BeginZoom);
     PlayerInputComponent->BindAction("Aim", IE_Released, this, &AWPlayer::EndZoom);
+    PlayerInputComponent->BindAction("UsePotion", IE_Pressed, this, &AWPlayer::UsePotion);
 }
 
 void AWPlayer::FMoveForward(float Value)
@@ -152,15 +157,16 @@ void AWPlayer::FMoveForward(float Value)
         const FRotator YawRotation(0, Rotation.Yaw, 0);
         const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 
-        if (Value > 0)
+        // 기본 걷기 속도
+        float Speed = (Value > 0) ? ForwardSpeed : BackwardSpeed;
+
+        // 달리기 상태면 RunSpeed로 변경
+        if (bIsRunning && Value > 0)
         {
-            GetCharacterMovement()->MaxWalkSpeed = ForwardSpeed;
-        }
-        else
-        {
-            GetCharacterMovement()->MaxWalkSpeed = BackwardSpeed;
+            Speed = RunSpeed;
         }
 
+        GetCharacterMovement()->MaxWalkSpeed = Speed;
         AddMovementInput(Direction, Value);
     }
 }
@@ -201,6 +207,16 @@ void AWPlayer::EndZoom()
     bWantsToZoom = false;
 }
 
+void AWPlayer::FStartRunning()
+{
+    bIsRunning = true;
+}
+
+void AWPlayer::FStopRunning()
+{
+    bIsRunning = false;
+}
+
 void AWPlayer::UIUpdate()
 {
     if (PlayerHpWidget)
@@ -220,5 +236,39 @@ float AWPlayer::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, 
     UE_LOG(LogTemp, Warning, TEXT("%s HP: %.1f / %.1f"), *GetName(), Health, MaxHealth);
 
     return DamageAmount;
+}
+
+void AWPlayer::UsePotion()
+{
+    if (PotionCount > 0 && Health < MaxHealth)
+    {
+        PotionCount--;
+        Health = FMath::Clamp(Health + HealAmount, 0.f, MaxHealth);
+
+        OnPotionCountChanged.Broadcast(PotionCount);
+        OnHealthChanged.Broadcast(Health / MaxHealth);
+
+        UE_LOG(LogTemp, Warning, TEXT("Used Potion | HP: %.1f / %.1f | Potions: %d"),
+            Health, MaxHealth, PotionCount);
+    }
+    else
+    {
+        if (PotionCount <= 0)
+        {
+          UE_LOG(LogTemp, Warning, TEXT("No potions left."));
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("HP full."));
+        }
+    }
+}
+
+void AWPlayer::AddPotion(int32 Amount)
+{
+    PotionCount += Amount;
+    OnPotionCountChanged.Broadcast(PotionCount);
+
+    UE_LOG(LogTemp, Warning, TEXT("Potion added. Total: %d"), PotionCount);
 }
 

@@ -15,10 +15,17 @@ class B2025_08_28_API UWAnimInstance : public UAnimInstance
 	GENERATED_BODY()
 
 public:
+    virtual void NativeInitializeAnimation() override;
     virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Movement")
+    class AWPlayer* Player;
 protected:
     UPROPERTY(BlueprintReadOnly, Category = "Movement")
     float Speed;
+
+    UPROPERTY(BlueprintReadOnly, Category = "Movement")
+    bool bIsRunning;
 
     UPROPERTY(BlueprintReadOnly, Category = "Movement")
     bool bIsInAir;

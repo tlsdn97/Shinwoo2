@@ -11,6 +11,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeWAnimInstance() {}
 
 // Begin Cross Module References
+B2025_08_28_API UClass* Z_Construct_UClass_AWPlayer_NoRegister();
 B2025_08_28_API UClass* Z_Construct_UClass_UWAnimInstance();
 B2025_08_28_API UClass* Z_Construct_UClass_UWAnimInstance_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UAnimInstance();
@@ -37,7 +38,15 @@ struct Z_Construct_UClass_UWAnimInstance_Statics
 		{ "IncludePath", "WAnimInstance.h" },
 		{ "ModuleRelativePath", "Public/WAnimInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Player_MetaData[] = {
+		{ "Category", "Movement" },
+		{ "ModuleRelativePath", "Public/WAnimInstance.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Speed_MetaData[] = {
+		{ "Category", "Movement" },
+		{ "ModuleRelativePath", "Public/WAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsRunning_MetaData[] = {
 		{ "Category", "Movement" },
 		{ "ModuleRelativePath", "Public/WAnimInstance.h" },
 	};
@@ -58,7 +67,10 @@ struct Z_Construct_UClass_UWAnimInstance_Statics
 		{ "ModuleRelativePath", "Public/WAnimInstance.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Player;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Speed;
+	static void NewProp_bIsRunning_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsRunning;
 	static void NewProp_bIsInAir_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsInAir;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ForwardSpeed;
@@ -72,7 +84,13 @@ struct Z_Construct_UClass_UWAnimInstance_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UWAnimInstance_Statics::NewProp_Player = { "Player", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UWAnimInstance, Player), Z_Construct_UClass_AWPlayer_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Player_MetaData), NewProp_Player_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UWAnimInstance_Statics::NewProp_Speed = { "Speed", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UWAnimInstance, Speed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Speed_MetaData), NewProp_Speed_MetaData) };
+void Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsRunning_SetBit(void* Obj)
+{
+	((UWAnimInstance*)Obj)->bIsRunning = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsRunning = { "bIsRunning", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UWAnimInstance), &Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsRunning_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsRunning_MetaData), NewProp_bIsRunning_MetaData) };
 void Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsInAir_SetBit(void* Obj)
 {
 	((UWAnimInstance*)Obj)->bIsInAir = 1;
@@ -86,7 +104,9 @@ void Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsFiring_SetBit(void* O
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsFiring = { "bIsFiring", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UWAnimInstance), &Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsFiring_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsFiring_MetaData), NewProp_bIsFiring_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UWAnimInstance_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAnimInstance_Statics::NewProp_Player,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAnimInstance_Statics::NewProp_Speed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsRunning,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAnimInstance_Statics::NewProp_bIsInAir,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAnimInstance_Statics::NewProp_ForwardSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UWAnimInstance_Statics::NewProp_RightSpeed,
@@ -134,10 +154,10 @@ UWAnimInstance::~UWAnimInstance() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UWAnimInstance, UWAnimInstance::StaticClass, TEXT("UWAnimInstance"), &Z_Registration_Info_UClass_UWAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWAnimInstance), 3353199369U) },
+		{ Z_Construct_UClass_UWAnimInstance, UWAnimInstance::StaticClass, TEXT("UWAnimInstance"), &Z_Registration_Info_UClass_UWAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UWAnimInstance), 1617574738U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_1992353186(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_1118097169(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAnimInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

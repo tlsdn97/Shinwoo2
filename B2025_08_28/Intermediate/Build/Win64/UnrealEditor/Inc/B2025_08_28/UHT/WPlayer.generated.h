@@ -18,11 +18,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 B2025_08_28_API void FOnHealthChanged_DelegateWrapper(const FMulticastScriptDelegate& OnHealthChanged, float NewHealthPercent);
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_10_DELEGATE \
+B2025_08_28_API void FOnPotionCountChanged_DelegateWrapper(const FMulticastScriptDelegate& OnPotionCountChanged, int32 NewPotionCount);
+
+
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnDamaged);
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAWPlayer(); \
 	friend struct Z_Construct_UClass_AWPlayer_Statics; \
@@ -31,7 +35,7 @@ public: \
 	DECLARE_SERIALIZER(AWPlayer)
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AWPlayer(AWPlayer&&); \
@@ -43,13 +47,13 @@ public: \
 	NO_API virtual ~AWPlayer();
 
 
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_11_PROLOG
-#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_GENERATED_BODY \
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_12_PROLOG
+#define FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_INCLASS_NO_PURE_DECLS \
-	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_14_ENHANCED_CONSTRUCTORS \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_INCLASS_NO_PURE_DECLS \
+	FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

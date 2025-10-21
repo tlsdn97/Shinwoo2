@@ -4,6 +4,7 @@
 #include "WPlayerHpWidget.h"
 #include "Components/ProgressBar.h"
 #include "WPlayer.h"
+#include "WHealingPotionUI.h"
 
 void UWPlayerHpWidget::NativeConstruct()
 {
@@ -24,4 +25,5 @@ void UWPlayerHpWidget::UpdateHealthBar(float NewHealthPercent)
         PlayerHp->SetPercent(NewHealthPercent);
     }
 }
+
 
