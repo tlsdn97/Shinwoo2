@@ -336,12 +336,12 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 		{ "IncludePath", "WAIMonster.h" },
 		{ "ModuleRelativePath", "Public/WAIMonster.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxHP_MetaData[] = {
-		{ "Category", "Stats" },
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MaxHealth_MetaData[] = {
+		{ "Category", "Status" },
 		{ "ModuleRelativePath", "Public/WAIMonster.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentHP_MetaData[] = {
-		{ "Category", "Stats" },
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentHealth_MetaData[] = {
+		{ "Category", "Status" },
 		{ "ModuleRelativePath", "Public/WAIMonster.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DetectionCapsule_MetaData[] = {
@@ -376,8 +376,8 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 		{ "ModuleRelativePath", "Public/WAIMonster.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHP;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHP;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DetectionCapsule;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DamageSphere;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamagePerTick;
@@ -399,8 +399,8 @@ struct Z_Construct_UClass_AWAIMonster_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_MaxHP = { "MaxHP", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, MaxHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHP_MetaData), NewProp_MaxHP_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_CurrentHP = { "CurrentHP", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, CurrentHP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentHP_MetaData), NewProp_CurrentHP_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, MaxHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHealth_MetaData), NewProp_MaxHealth_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_CurrentHealth = { "CurrentHealth", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, CurrentHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentHealth_MetaData), NewProp_CurrentHealth_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_DetectionCapsule = { "DetectionCapsule", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, DetectionCapsule), Z_Construct_UClass_UCapsuleComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DetectionCapsule_MetaData), NewProp_DetectionCapsule_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_DamageSphere = { "DamageSphere", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, DamageSphere), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageSphere_MetaData), NewProp_DamageSphere_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_DamagePerTick = { "DamagePerTick", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, DamagePerTick), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamagePerTick_MetaData), NewProp_DamagePerTick_MetaData) };
@@ -409,8 +409,8 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Sta
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_CapsuleHalfHeight = { "CapsuleHalfHeight", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, CapsuleHalfHeight), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CapsuleHalfHeight_MetaData), NewProp_CapsuleHalfHeight_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWAIMonster_Statics::NewProp_hpFloatingWidget = { "hpFloatingWidget", nullptr, (EPropertyFlags)0x0020080000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWAIMonster, hpFloatingWidget), Z_Construct_UClass_UWidgetComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_hpFloatingWidget_MetaData), NewProp_hpFloatingWidget_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWAIMonster_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_MaxHP,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_CurrentHP,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_MaxHealth,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_CurrentHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_DetectionCapsule,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_DamageSphere,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWAIMonster_Statics::NewProp_DamagePerTick,
@@ -460,10 +460,10 @@ AWAIMonster::~AWAIMonster() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AWAIMonster, AWAIMonster::StaticClass, TEXT("AWAIMonster"), &Z_Registration_Info_UClass_AWAIMonster, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWAIMonster), 3356082881U) },
+		{ Z_Construct_UClass_AWAIMonster, AWAIMonster::StaticClass, TEXT("AWAIMonster"), &Z_Registration_Info_UClass_AWAIMonster, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWAIMonster), 3236127213U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_1025689713(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_1845291916(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WAIMonster_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

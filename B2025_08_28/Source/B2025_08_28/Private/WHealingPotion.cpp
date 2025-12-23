@@ -4,14 +4,12 @@
 #include "WHealingPotion.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "WPlayer.h"
 #include "Kismet/GameplayStatics.h"
+#include "WPlayer.h"
 
 
 AWHealingPotion::AWHealingPotion()
 {
-	PrimaryActorTick.bCanEverTick = false;
-
 	PrimaryActorTick.bCanEverTick = false;
 
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
@@ -22,7 +20,6 @@ AWHealingPotion::AWHealingPotion()
 	CollisionComp->SetupAttachment(RootComponent);
 	CollisionComp->InitSphereRadius(80.f);
 	CollisionComp->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
-
 }
 
 void AWHealingPotion::BeginPlay()

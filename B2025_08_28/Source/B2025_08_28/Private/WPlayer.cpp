@@ -5,6 +5,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h" 
+#include "Components/BoxComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/WidgetComponent.h"
@@ -12,7 +13,8 @@
 
 #include "Blueprint/UserWidget.h"
 #include "Components/ProgressBar.h"
-#include "WDamageLogWidget.h"
+#include "DrawDebugHelpers.h"
+#include "Engine/DamageEvents.h"
 #include "WPlayerHpWidget.h"
 
 #include "GameFramework/Controller.h"
@@ -22,15 +24,14 @@
 #include "WAnimInstance.h"
 #include "WAIMonster.h"
 
-
 AWPlayer::AWPlayer()
 {
 	PrimaryActorTick.bCanEverTick = true;
     bIsFiring = false;
-
-    TotalDamage = 0;
-
+    bIsAttacking = false;
     bReplicates = true;
+    PotionCount = 0;
+
     SetReplicateMovement(true);
 
     GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -47,58 +48,71 @@ AWPlayer::AWPlayer()
     GetCharacterMovement()->MaxWalkSpeed = ForwardSpeed;
 }
 
-void AWPlayer::OnDamaged(int32 Damage)
+void AWPlayer::Attack()
 {
-    TotalDamage += Damage;
+    if (bIsAttacking) return;
+    bIsAttacking = true;
 
-    if (!DamageWidgetClass) return;
+    UE_LOG(LogTemp, Warning, TEXT("Player Attack Start"));
 
-    APlayerController* PC = Cast<APlayerController>(GetController());
-    if (!PC)
-    {
-        PC = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-    }
-    if (!PC) return;
+    // 공격 트레이스 수행
+    PerformAttackTrace();
 
-    UWDamageLogWidget* Widget = CreateWidget<UWDamageLogWidget>(PC, DamageWidgetClass);
-    if (!Widget) return;
-
-    FVector Offset(0.f, 0.f, 200.f);
-
-    Widget->InitWidget(this, Damage, TotalDamage, Offset);
-    Widget->AddToViewport();
+    // 쿨타임 설정
+    FTimerHandle TimerHandle;
+    GetWorldTimerManager().SetTimer(TimerHandle, [this]()
+        {
+            bIsAttacking = false;
+            UE_LOG(LogTemp, Warning, TEXT("Player Attack End"));
+        }, 0.4f, false);
 }
 
-void AWPlayer::Attack_Hit()
+void AWPlayer::PerformAttackTrace()
 {
-    FVector Start = GetActorLocation();
-    FVector End = Start + GetActorForwardVector() * 150.f;
+    FHitResult hitResult;
+    FCollisionQueryParams params(NAME_None, false, this);
 
-    FHitResult HitResult;
-    FCollisionQueryParams Params;
-    Params.AddIgnoredActor(this);
+    float AttackRange = 200.0f;   // 공격 범위
+    float AttackRadius = 100.0f;  // 캡슐 반경
+    float DamageAmount = 30.0f;   // 고정 데미지
 
+    // 전방 벡터 및 회전 계산
+    FVector Forward = GetActorForwardVector();
+    FVector Start = GetActorLocation() + Forward * (AttackRange * 0.5f);
+    FVector End = GetActorLocation() + Forward * (AttackRange * 0.5f);
+
+    // Sweep에 사용할 회전값 (Z Up → Forward로 회전)
+    FQuat CapsuleRotation = FQuat::FindBetweenVectors(FVector(0, 0, 1), Forward);
+
+    // Sweep 충돌 감지 (채널링)
     bool bHit = GetWorld()->SweepSingleByChannel(
-        HitResult,
+        OUT hitResult,
         Start,
         End,
-        FQuat::Identity,
-        static_cast<ECollisionChannel>(ECC_GameTraceChannel1),
-        FCollisionShape::MakeSphere(50.f),
-        Params
+        CapsuleRotation,
+        ECC_GameTraceChannel1,  // 공격용 트레이스 채널 (프로젝트 세팅에서 설정)
+        FCollisionShape::MakeCapsule(AttackRadius, AttackRange * 0.5f),
+        params
     );
 
-    DrawDebugSphere(GetWorld(), End, 50.f, 16, FColor::Red, false, 1.0f);
+    // 디버그용 색상 설정
+    FColor DrawColor = bHit ? FColor::Red : FColor::Green;
 
-    if (bHit)
+    // 피격 판정
+    if (bHit && hitResult.GetActor()->IsValidLowLevel())
     {
-        AActor* HitActor = HitResult.GetActor();
-        if (HitActor)
+        AActor* Victim = hitResult.GetActor();
+
+        if (Victim && Victim != this) // 자기 자신 제외
         {
-            UE_LOG(LogTemp, Warning, TEXT("Hit: %s"), *HitActor->GetName());
-            UGameplayStatics::ApplyDamage(HitActor, 30.f, GetController(), this, UDamageType::StaticClass());
+            FDamageEvent DamageEvent;
+            Victim->TakeDamage(DamageAmount, DamageEvent, GetController(), this);
         }
     }
+
+    // 충돌 캡슐 시각화 (1초 동안 표시)
+    FVector Center = GetActorLocation() + Forward * (AttackRange * 0.5f);
+    DrawDebugCapsule(GetWorld(), Center, AttackRange * 0.5f, AttackRadius, CapsuleRotation, DrawColor, false, 1.0f);
 }
 
 void AWPlayer::BeginPlay()

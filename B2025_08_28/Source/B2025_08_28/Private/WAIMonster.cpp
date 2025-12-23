@@ -20,8 +20,6 @@ AWAIMonster::AWAIMonster()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
-    MaxHP = 100.f;
-    CurrentHP = MaxHP;
 
     // 플레이어 감지 캡슐
     DetectionCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("DetectionCapsule"));
@@ -46,21 +44,30 @@ AWAIMonster::AWAIMonster()
     hpFloatingWidget->SetWidgetSpace(EWidgetSpace::Screen);
 }
 
+void AWAIMonster::Die()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Enemy Died"));
+    Destroy();
+}
+
 float AWAIMonster::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-    float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+    Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 
-    MaxHP -= ActualDamage;
+    CurrentHealth -= DamageAmount;
 
-    if (MaxHP <= 0.f)
+    if (CurrentHealth <= 0.0f)
     {
-        MaxHP = 0.f;
-        Destroy();
+        CurrentHealth = 0.0f;
+        // 죽음 처리
+        UE_LOG(LogTemp, Warning, TEXT("%s 사망"), *GetName());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("%s 피격! 현재 HP: %.1f"), *GetName(), CurrentHealth);
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("몬스터가 데미지를 입음! 현재 HP: %f"), MaxHP);
-
-    return ActualDamage;
+    return DamageAmount;
 }
 
 void AWAIMonster::HandleDeath()
@@ -73,7 +80,7 @@ void AWAIMonster::BeginPlay()
 {
     Super::BeginPlay();
 
-    CurrentHP = MaxHP;
+    CurrentHealth = MaxHealth;
 
     if (AWAIController* AICon = Cast<AWAIController>(GetController()))
     {

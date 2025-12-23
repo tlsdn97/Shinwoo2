@@ -14,11 +14,13 @@ class B2025_08_28_API AWAIMonster : public ACharacter
 public:
 	AWAIMonster();
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-    float MaxHP;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Status")
+    float MaxHealth = 100.0f;
 
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Stats")
-    float CurrentHP;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Status")
+    float CurrentHealth;
+
+    void Die();
 
     virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
     void HandleDeath();
@@ -53,7 +55,6 @@ protected:
     UPROPERTY(EditAnywhere, Category = "MySettings")
     class UWidgetComponent* hpFloatingWidget;
 
-private:
 private:
     FTimerHandle DamageTimerHandle;
     AActor* CurrentTarget;

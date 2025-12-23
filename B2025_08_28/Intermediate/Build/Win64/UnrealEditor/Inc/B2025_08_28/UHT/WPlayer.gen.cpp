@@ -12,11 +12,9 @@ void EmptyLinkFunctionForGeneratedCodeWPlayer() {}
 // Begin Cross Module References
 B2025_08_28_API UClass* Z_Construct_UClass_AWPlayer();
 B2025_08_28_API UClass* Z_Construct_UClass_AWPlayer_NoRegister();
-B2025_08_28_API UClass* Z_Construct_UClass_UWDamageLogWidget_NoRegister();
 B2025_08_28_API UClass* Z_Construct_UClass_UWPlayerHpWidget_NoRegister();
 B2025_08_28_API UFunction* Z_Construct_UDelegateFunction_B2025_08_28_OnHealthChanged__DelegateSignature();
 B2025_08_28_API UFunction* Z_Construct_UDelegateFunction_B2025_08_28_OnPotionCountChanged__DelegateSignature();
-COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
@@ -112,54 +110,72 @@ void FOnPotionCountChanged_DelegateWrapper(const FMulticastScriptDelegate& OnPot
 }
 // End Delegate FOnPotionCountChanged
 
-// Begin Class AWPlayer Function OnDamaged
-struct Z_Construct_UFunction_AWPlayer_OnDamaged_Statics
+// Begin Class AWPlayer Function Attack
+struct Z_Construct_UFunction_AWPlayer_Attack_Statics
 {
-	struct WPlayer_eventOnDamaged_Parms
-	{
-		int32 Damage;
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "Combat" },
+		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWPlayer_Attack_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWPlayer, nullptr, "Attack", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AWPlayer_Attack_Statics::Function_MetaDataParams), Z_Construct_UFunction_AWPlayer_Attack_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AWPlayer_Attack()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWPlayer_Attack_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AWPlayer::execAttack)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->Attack();
+	P_NATIVE_END;
+}
+// End Class AWPlayer Function Attack
+
+// Begin Class AWPlayer Function PerformAttackTrace
+struct Z_Construct_UFunction_AWPlayer_PerformAttackTrace_Statics
+{
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FIntPropertyParams NewProp_Damage;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::NewProp_Damage = { "Damage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(WPlayer_eventOnDamaged_Parms, Damage), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::NewProp_Damage,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWPlayer, nullptr, "OnDamaged", nullptr, nullptr, Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::PropPointers), sizeof(Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::WPlayer_eventOnDamaged_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::Function_MetaDataParams), Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::WPlayer_eventOnDamaged_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_AWPlayer_OnDamaged()
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AWPlayer_PerformAttackTrace_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AWPlayer, nullptr, "PerformAttackTrace", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AWPlayer_PerformAttackTrace_Statics::Function_MetaDataParams), Z_Construct_UFunction_AWPlayer_PerformAttackTrace_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AWPlayer_PerformAttackTrace()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWPlayer_OnDamaged_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AWPlayer_PerformAttackTrace_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(AWPlayer::execOnDamaged)
+DEFINE_FUNCTION(AWPlayer::execPerformAttackTrace)
 {
-	P_GET_PROPERTY(FIntProperty,Z_Param_Damage);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->OnDamaged(Z_Param_Damage);
+	P_THIS->PerformAttackTrace();
 	P_NATIVE_END;
 }
-// End Class AWPlayer Function OnDamaged
+// End Class AWPlayer Function PerformAttackTrace
 
 // Begin Class AWPlayer
 void AWPlayer::StaticRegisterNativesAWPlayer()
 {
 	UClass* Class = AWPlayer::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
-		{ "OnDamaged", &AWPlayer::execOnDamaged },
+		{ "Attack", &AWPlayer::execAttack },
+		{ "PerformAttackTrace", &AWPlayer::execPerformAttackTrace },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -176,8 +192,12 @@ struct Z_Construct_UClass_AWPlayer_Statics
 		{ "IncludePath", "WPlayer.h" },
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DamageWidgetClass_MetaData[] = {
-		{ "Category", "UI" },
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PotionCount_MetaData[] = {
+		{ "Category", "Item" },
+		{ "ModuleRelativePath", "Public/WPlayer.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OnItemCountChanged_MetaData[] = {
+		{ "Category", "Item" },
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ForwardSpeed_MetaData[] = {
@@ -208,10 +228,6 @@ struct Z_Construct_UClass_AWPlayer_Statics
 		{ "Category", "Camera" },
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentIndex_MetaData[] = {
-		{ "Category", "State" },
-		{ "ModuleRelativePath", "Public/WPlayer.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpringArmComp_MetaData[] = {
 		{ "Category", "Camera" },
 		{ "EditInline", "true" },
@@ -238,10 +254,6 @@ struct Z_Construct_UClass_AWPlayer_Statics
 		{ "Category", "Stats" },
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PotionCount_MetaData[] = {
-		{ "Category", "Item" },
-		{ "ModuleRelativePath", "Public/WPlayer.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_HealAmount_MetaData[] = {
 		{ "Category", "Item" },
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
@@ -260,7 +272,8 @@ struct Z_Construct_UClass_AWPlayer_Statics
 		{ "ModuleRelativePath", "Public/WPlayer.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FClassPropertyParams NewProp_DamageWidgetClass;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_PotionCount;
+	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnItemCountChanged;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ForwardSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_BackwardSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RunSpeed;
@@ -268,14 +281,12 @@ struct Z_Construct_UClass_AWPlayer_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DefaultFOV;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ZoomedFOV;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ZoomInterpSpeed;
-	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentIndex;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SpringArmComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnHealthChanged;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnPotionCountChanged;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Health;
-	static const UECodeGen_Private::FIntPropertyParams NewProp_PotionCount;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_HealAmount;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerHpWidget;
@@ -284,7 +295,8 @@ struct Z_Construct_UClass_AWPlayer_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_AWPlayer_OnDamaged, "OnDamaged" }, // 3386938924
+		{ &Z_Construct_UFunction_AWPlayer_Attack, "Attack" }, // 688297513
+		{ &Z_Construct_UFunction_AWPlayer_PerformAttackTrace, "PerformAttackTrace" }, // 3678038583
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -292,7 +304,8 @@ struct Z_Construct_UClass_AWPlayer_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_DamageWidgetClass = { "DamageWidgetClass", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, DamageWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UWDamageLogWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageWidgetClass_MetaData), NewProp_DamageWidgetClass_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_PotionCount = { "PotionCount", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, PotionCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PotionCount_MetaData), NewProp_PotionCount_MetaData) };
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_OnItemCountChanged = { "OnItemCountChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, OnItemCountChanged), Z_Construct_UDelegateFunction_B2025_08_28_OnPotionCountChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnItemCountChanged_MetaData), NewProp_OnItemCountChanged_MetaData) }; // 2233663344
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_ForwardSpeed = { "ForwardSpeed", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, ForwardSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ForwardSpeed_MetaData), NewProp_ForwardSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_BackwardSpeed = { "BackwardSpeed", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, BackwardSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BackwardSpeed_MetaData), NewProp_BackwardSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_RunSpeed = { "RunSpeed", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, RunSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RunSpeed_MetaData), NewProp_RunSpeed_MetaData) };
@@ -300,14 +313,12 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Stati
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_DefaultFOV = { "DefaultFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, DefaultFOV), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DefaultFOV_MetaData), NewProp_DefaultFOV_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_ZoomedFOV = { "ZoomedFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, ZoomedFOV), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ZoomedFOV_MetaData), NewProp_ZoomedFOV_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_ZoomInterpSpeed = { "ZoomInterpSpeed", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, ZoomInterpSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ZoomInterpSpeed_MetaData), NewProp_ZoomInterpSpeed_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentIndex = { "CurrentIndex", nullptr, (EPropertyFlags)0x0010000000020805, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, CurrentIndex), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentIndex_MetaData), NewProp_CurrentIndex_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_SpringArmComp = { "SpringArmComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, SpringArmComp), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpringArmComp_MetaData), NewProp_SpringArmComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CameraComp_MetaData), NewProp_CameraComp_MetaData) };
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_OnHealthChanged = { "OnHealthChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, OnHealthChanged), Z_Construct_UDelegateFunction_B2025_08_28_OnHealthChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnHealthChanged_MetaData), NewProp_OnHealthChanged_MetaData) }; // 2075227993
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_OnPotionCountChanged = { "OnPotionCountChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, OnPotionCountChanged), Z_Construct_UDelegateFunction_B2025_08_28_OnPotionCountChanged__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnPotionCountChanged_MetaData), NewProp_OnPotionCountChanged_MetaData) }; // 2233663344
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, MaxHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxHealth_MetaData), NewProp_MaxHealth_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_Health = { "Health", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, Health), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Health_MetaData), NewProp_Health_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_PotionCount = { "PotionCount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, PotionCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PotionCount_MetaData), NewProp_PotionCount_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_HealAmount = { "HealAmount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, HealAmount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HealAmount_MetaData), NewProp_HealAmount_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentHealth = { "CurrentHealth", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, CurrentHealth), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentHealth_MetaData), NewProp_CurrentHealth_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_PlayerHpWidget = { "PlayerHpWidget", nullptr, (EPropertyFlags)0x00100000000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AWPlayer, PlayerHpWidget), Z_Construct_UClass_UWPlayerHpWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerHpWidget_MetaData), NewProp_PlayerHpWidget_MetaData) };
@@ -317,7 +328,8 @@ void Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI_SetBit(void* 
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI = { "bUseWorldSpaceUI", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AWPlayer), &Z_Construct_UClass_AWPlayer_Statics::NewProp_bUseWorldSpaceUI_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bUseWorldSpaceUI_MetaData), NewProp_bUseWorldSpaceUI_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWPlayer_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_DamageWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_PotionCount,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_OnItemCountChanged,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_ForwardSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_BackwardSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_RunSpeed,
@@ -325,14 +337,12 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWPlayer_
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_DefaultFOV,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_ZoomedFOV,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_ZoomInterpSpeed,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentIndex,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_SpringArmComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_CameraComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_OnHealthChanged,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_OnPotionCountChanged,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_MaxHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_Health,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_PotionCount,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_HealAmount,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_CurrentHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWPlayer_Statics::NewProp_PlayerHpWidget,
@@ -379,10 +389,10 @@ AWPlayer::~AWPlayer() {}
 struct Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AWPlayer, AWPlayer::StaticClass, TEXT("AWPlayer"), &Z_Registration_Info_UClass_AWPlayer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWPlayer), 1321612317U) },
+		{ Z_Construct_UClass_AWPlayer, AWPlayer::StaticClass, TEXT("AWPlayer"), &Z_Registration_Info_UClass_AWPlayer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AWPlayer), 4094117129U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_1934685699(TEXT("/Script/B2025_08_28"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_1272351344(TEXT("/Script/B2025_08_28"),
 	Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_PP_Shinwoo2_Shinwoo2_B2025_08_28_Source_B2025_08_28_Public_WPlayer_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

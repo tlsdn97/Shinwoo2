@@ -13,5 +13,5 @@ UCLASS()
 class B2025_08_28_API UWHealingPotionUI : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
 };

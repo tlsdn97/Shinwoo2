@@ -17,18 +17,21 @@ class B2025_08_28_API AWPlayer : public ACharacter
 public:
 	AWPlayer();
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
-    TSubclassOf<class UWDamageLogWidget> DamageWidgetClass;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
+    int32 PotionCount;
 
-    int32 TotalDamage;
+    UPROPERTY(BlueprintAssignable, Category = "Item")
+    FOnPotionCountChanged OnItemCountChanged;
+
+    UFUNCTION(BlueprintCallable, Category = "Combat")
+    void Attack();
 
     UFUNCTION(BlueprintCallable)
-    void OnDamaged(int32 Damage);
+    void PerformAttackTrace();
 
-    void Attack_Hit();
+    bool bIsAttacking;
 
     bool bIsRunning = false;
-
 protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaSeconds) override;
@@ -71,10 +74,7 @@ protected:
     UPROPERTY(EditDefaultsOnly, Category = "Camera")
     float ZoomInterpSpeed = 15.f;
 
-public:
-    UPROPERTY(VisibleInstanceOnly, BlueprintReadWrite, Category = "State")
-    int32 CurrentIndex = 0;
-protected:
+
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     class USpringArmComponent* SpringArmComp;
 
@@ -92,9 +92,6 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
     float Health = 400.f;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
-    int32 PotionCount = 0;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
     float HealAmount = 30.f;
